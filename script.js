@@ -1,19 +1,21 @@
+/*jslint strict: true, white: true, sub: true, onevar: true, undef: true, eqeqeq: true, newcap: true, immed: true, indent: 4 */
+
 $('form').jsonForm({
         schema: {
           firstName: {
             type: 'string',
             title: 'First Name',
-            required: true
+            // required: true
           },
           lastName: {
             type: 'string',
             title: 'Last Name',
-            required: true
+            // required: true
           },
           companyName: {
             type: 'string',
             title: 'Company Name',
-            required: true
+            // required: true
           },
           // companyTitle: {
           //   type: 'string',
@@ -55,35 +57,13 @@ $('form').jsonForm({
 
         onSubmit: function (errors, values) {
           if (errors) {
-            $('#res').html('<p>I beg your pardon?</p>');
+            $('#json').html('<p>I beg your pardon?</p>');
           }
           else {
             // $('#res').html('<p>Hello ' + values.name_first + ' ' + values.name_last + '.' +
             //   (values.twitter ? '<br/>You can be found on twitter at ' + values.twitter + '.' : '') +
             //   '</p>');
-            $("#json").append("<br/><strong>" + JSON.stringify(values, undefined, 2) + "</strong>");
+            $('#json').html('<br/><strong>' + JSON.stringify(values, undefined, 2) + '</strong>');
           }
         }
       });
-
-function syntaxHighlight(json) {
-    if (typeof json != 'string') {
-         json = JSON.stringify(json, undefined, 2);
-    }
-    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-        var cls = 'number';
-        if (/^"/.test(match)) {
-            if (/:$/.test(match)) {
-                cls = 'key';
-            } else {
-                cls = 'string';
-            }
-        } else if (/true|false/.test(match)) {
-            cls = 'boolean';
-        } else if (/null/.test(match)) {
-            cls = 'null';
-        }
-        return '<span class="' + cls + '">' + match + '</span>';
-    });
-}
