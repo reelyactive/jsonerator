@@ -10,45 +10,45 @@ $('form').jsonForm({
             title: 'Last Name',
             required: true
           },
-          companyLogoUrl: {
-            type: 'string',
-            title: 'Company Logo (URL)',
-            required: true
-          },
           companyName: {
             type: 'string',
             title: 'Company Name',
             required: true
           },
-          companyTitle: {
-            type: 'string',
-            title: 'Company Title',
-            required: true
-          },
-          companyUrl: {
-            type: 'string',
-            title: 'Company URL',
-            required: true
-          },
-          defaultMessage: {
-            type: 'string',
-            title: 'Message',
-            required: true
-          },
-          linkedInPublicUrl: {
-            type: 'string',
-            title: 'LinkedIn Public URL',
-            required: true
-          },
-          portraitImageUrl: {
-            type: 'string',
-            title: 'Portrait Image URL',
-            required: true
-          },
-          twitterPersonalScreenName: {
-            type: 'string',
-            title: 'Twitter Handle'
-          }
+          // companyTitle: {
+          //   type: 'string',
+          //   title: 'Company Title',
+          //   required: true
+          // },
+          // companyLogoUrl: {
+          //   type: 'string',
+          //   title: 'Company Logo (URL)',
+          //   required: true
+          // },
+          // companyUrl: {
+          //   type: 'string',
+          //   title: 'Company URL',
+          //   required: true
+          // },
+          // defaultMessage: {
+          //   type: 'string',
+          //   title: 'Message',
+          //   required: true
+          // },
+          // linkedInPublicUrl: {
+          //   type: 'string',
+          //   title: 'LinkedIn Public URL',
+          //   required: true
+          // },
+          // portraitImageUrl: {
+          //   type: 'string',
+          //   title: 'Portrait Image URL',
+          //   required: true
+          // },
+          // twitterPersonalScreenName: {
+          //   type: 'string',
+          //   title: 'Twitter Handle'
+          // }
         },
         onSubmit: function (errors, values) {
           if (errors) {
