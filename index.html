@@ -8,41 +8,13 @@
   <body>
     <h1>Hello reelyActive</h1>
     <form></form>
-    <div id="res" class="alert"></div>
-    <div id="raw" clast="alert"></div>
+    <!-- <div id="res" class="alert"></div> -->
+    <pre id="json">Here is your JSON:</pre>
+
     <script type="text/javascript" src="deps/jquery.min.js"></script>
     <script type="text/javascript" src="deps/underscore.js"></script>
     <script type="text/javascript" src="deps/opt/jsv.js"></script>
     <script type="text/javascript" src="lib/jsonform.js"></script>
-    <script type="text/javascript">
-      $('form').jsonForm({
-        schema: {
-          name_first: {
-            type: 'string',
-            title: 'First Name',
-            required: true
-          },
-          name_last: {
-            type: 'string',
-            title: 'Last Name',
-            required: true
-          },
-          twitter: {
-            type: 'string',
-            title: 'Twitter Handle'
-          }
-        },
-        onSubmit: function (errors, values) {
-          if (errors) {
-            $('#res').html('<p>I beg your pardon?</p>');
-          }
-          else {
-            $('#res').html('<p>Hello ' + values.name_first + ' ' + values.name_last + '.' +
-              (values.twitter ? '<br/>You can be found on twitter at ' + values.twitter + '.' : '') +
-              '</p>');
-          }
-        }
-      });
-    </script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
