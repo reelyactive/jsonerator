@@ -50,6 +50,9 @@ $('form').jsonForm({
           //   title: 'Twitter Handle'
           // }
         },
+
+        // TODO : remove submit, auto update json div
+
         onSubmit: function (errors, values) {
           if (errors) {
             $('#res').html('<p>I beg your pardon?</p>');
