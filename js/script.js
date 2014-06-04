@@ -1,5 +1,9 @@
 /*jslint strict: true, white: true, sub: true, onevar: true, undef: true, eqeqeq: true, newcap: true, immed: true, indent: 4 */
 
+$(document).ready( function(){
+    $("input").on("keyup", onInput)
+});
+
 var sampleJeff = {
   "companyLogoUrl": "http://reelyactive.com/notman/images/reelyActive.png",
   "companyName": "reelyActive",
@@ -14,9 +18,6 @@ var sampleJeff = {
 };
 
 $("#json").append(JSON.stringify(sampleJeff, undefined, 2));
-
-// TODO out of phase by one keypress ...
-// a better way to autoupdate than "onKeypress=onInput()" <input> attribute within index.html
 
 var onInput = function(){
     var formElements = $("form").serializeArray();
