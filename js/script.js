@@ -15,6 +15,9 @@ var sampleJeff = {
 
 $("#json").append(JSON.stringify(sampleJeff, undefined, 2));
 
+// TODO out of phase by one keypress ...
+// a better way to autoupdate than "onKeypress=onInput()" <input> attribute within index.html
+
 var onInput = function(){
     var formElements = $("form").serializeArray();
     $("#json").html(JSON.stringify(formElements, undefined, 2));
