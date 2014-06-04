@@ -2,26 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting started with Barnowl</title>
-    <link rel="stylesheet" style="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" style="text/css" href="css/bootstrap.min.css" />
   </head>
   <body>
-    <div id="col1", align="center", style="float: left; width:40%; padding:10px;">
-        <h2>Hello reelyActive</h2>
-        <div id="form">
+    <div class="row">
+        <div class="col-md-4", align="center">
+            <h2>Hello reelyActive</h2>
             <form>
                 <input type="text" name="firstName" value="First Name"><br>
                 <input type="text" name="lastName" value="Last Name"><br>
                 <input type="text" name="companyName" value="Company Name"><br>
             </form>
         </div>
-    </div>
-    <div id="col2", style="float: right; width:40%; padding:10px;">
-        <h2 align="center">Your JSON</h2>
-        <div stlye="padding:50px">
-        <pre id="json", stlye="padding:50px">Well, this isn't your JSON yet... type something!
+        <div class="col-md-8">
+            <h2 align="center">Your JSON</h2>
+            <pre id="json">Well, this isn't your JSON yet... type something!
 </pre>
-        </div>
     </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
