@@ -4,18 +4,7 @@ $(document).ready( function(){
   $("input").on("keyup", onInput);
 });
 
-var sampleJeff = {
-  "companyLogoUrl": "http://reelyactive.com/notman/images/reelyActive.png",
-  "companyName": "reelyActive",
-  "companyTitle": "CEO",
-  "companyUrl": "http://reelyactive.com",
-  "defaultMessage": "Discovery is the catalyst for the Internet of Things",
-  "firstName": "Jeffrey",
-  "lastName": "Dungen",
-  "linkedInPublicUrl": "http://ca.linkedin.com/in/dungen/",
-  "portraitImageUrl": "http://reelyactive.com/notman/images/JeffreyDungen.jpg",
-  "twitterPersonalScreenName": "reelyActive"
-};
+var defaultMessage = {"somekey":"somevalue"};
 
 $("#json").append(JSON.stringify(sampleJeff, undefined, 2));
 
