@@ -2,24 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting started with Barnowl</title>
-    <link rel="stylesheet" style="text/css" href="css/bootstrap.min.css" />
+    <title> jsonerator by reelyActive </title>
   </head>
   <body>
-    <div class="row">
-        <div class="col-md-4", align="center">
-            <h2>Hello reelyActive</h2>
-            <form>
-                <input type="text" name="firstName" value="First Name"><br>
-                <input type="text" name="lastName" value="Last Name"><br>
-                <input type="text" name="companyName" value="Company Name"><br>
-            </form>
-        </div>
-        <div class="col-md-8">
-            <h2 align="center">Your JSON</h2>
-            <pre id="json">Well, this isn't your JSON yet... type something!
-</pre>
+    <div>
+      <div style="float:left; padding:0 4em">
+        <h2>Your information</h2>
+        <form>
+          <input type="text" name="firstName" placeholder="First Name"><br>
+          <input type="text" name="lastName" placeholder="Last Name"><br>
+          <input type="text" name="portraitImageURL" placeholder="Portrait Image URL"><br>
+          <input type="text" name="companyName" placeholder="Company Name"><br>
+          <input type="text" name="companyUrl" placeholder="Company Webpage URL"><br>
+          <input type="text" name="linkedInPublicUrl" placeholder="LinkedIn Public URL"><br>
+          <input type="text" name="twitterPersonalScreenName" placeholder="Twitter Handle (without @)"><br>
+          <input type="text" name="googlePlusProfileName" placeholder="Google+ Profile Name"><br>
+          <input type="text" name="instagramProfileName" placeholder="Instagram Profile Name"><br>
+          <input type="text" name="soundcloudProfileName" placeholder="SoundCloud Profile Name"><br>
+        </form>
+      </div>
+      <div style="float:left; padding:0 4em">
+        <h2>Your JSON</h2>
+        <pre id="json"></pre>
     </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
