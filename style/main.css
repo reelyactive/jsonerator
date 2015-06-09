@@ -1,0 +1,83 @@
+body {
+font-family: Source Sans Pro;
+margin: 0;
+}
+
+ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+
+a{
+    float: left;
+    width: 6em;
+    text-decoration: none;
+    padding: 0.2em 0.6em;
+    border-right: 1px solid white;
+	background-color:#5a5a5a;
+	color:white;
+}
+
+
+li {
+    display: inline;
+}
+
+
+#bl:hover ,#or:hover , #gr:hover   {
+ background-color:#ff6900;
+ }
+ 
+
+.myclass
+{
+  color:yellow; 
+ background-color:blue;
+}
+
+
+#div1, #div2 {
+position: absolute;
+width: 400px;
+}
+
+#div1 {
+left: 0;
+}
+
+#div2 {
+left: 450px;
+top:0px;
+}
+
+#div3, #div4 {
+position: absolute;
+width: 400px;
+}
+
+#div3 {
+left: 0;
+}
+
+#div4 {
+left: 300px;
+top:0px;
+}
+
+#div5, #div6 {
+position: absolute;
+width: 400px;
+}
+
+#div5 {
+left: 0;
+}
+
+#div6 {
+left: 500px;
+top:0px;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>
+      reelyActive: JSONERATOR
+    </title>
+	
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js">
+    </script>
+    <script type="text/javascript" src="js/jsonerator.js">
+    </script>
+    
+	 
+	<link rel="stylesheet" href="style/main.css" />
+  </head>
+  <body ng-app="watch">
+ 
+ 
+ 
+ <div ng-controller="control" id="container"> 
+
+ <ul>
+ <li ><a href="#" ng-click = "person();tog=1" ng-click = "tog=1" id="bl" ng-class='{"myclass":tog==1}'>Person</a></li>
+<li><a href="#" ng-click = "product();tog=2" id="or" ng-class='{"myclass":tog==2}' >Product</a></li>
+<li ><a href="#" ng-click = "place();tog=3 " id="gr" ng-class='{"myclass":tog==3}' >Place</a></li>
+</ul><br/><br/>
+
+
+  <div  ng-controller="Person_Ctrl"  ng-show="jsonerator" id="div1"  >
+  
+	<form>
+	  <table>
+	  <tr>
+	  <td> GivenName:  </td>
+       <td> <input type="text" ng-model="person.givenName" ng-change='change()'/></td>
+	   </tr>
+	   
+	   <tr>
+	     <td>FamilyName:</td>
+  	     <td> <input type="text" ng-model="person.familyName" ng-change='change()' /></td>	 
+       </tr>	 
+	 
+	    <tr>
+	    <td>Gender:</td>
+        <td> Male  <input type="radio" ng-model="person.gender" ng-change='change()' value="male"/>
+          Female <input type="radio" ng-model="person.gender" ng-change='change()' value="female"/>
+		 </td>
+		 </tr> 
+		 
+		 <tr>
+		  <td>Nationality:</td>
+        <td><select ng-model="person"  ng-options="{nationality:person.code} as person.nationality for person in countries "  ng-change='change()'>
+		 <option value="">-- Select a Country --</option>
+       </select>
+	    </td>
+        </tr>
+	    
+		<tr>
+		<td> WorksFor:
+        <td> <input type="text" ng-model="person.worksFor" ng-change='change()' /></td>
+		</tr>
+		
+		<tr>
+		<td>JobTitle:</td> 
+       <td> <input type="text" ng-model="person.jobTitle" ng-change='change()' />
+          </td>
+		</tr>
+		  
+		 <tr>
+		 <td>Url:</td>
+        <td><input type="url" ng-model="person.url" ng-change='change()' /> 
+        </td>
+		</tr>
+		
+		 <tr>
+		 <td>Image:</td>
+         <td> <input type="url" ng-model="person.image" ng-change='change()' />
+         </td>
+		 </tr>
+		 </table>
+    </form>
+	 <div id="div2" >
+     <h1>Your JSON</h1>
+
+    <pre>{{person_ld | json}}</pre>
+    
+	</div>
+	</div>
+
+
+<div ng-controller="Product_Ctrl"  ng-show="jsonerator2"  id="div3" >
+	
+      <form>
+	  <table>
+	  <tr>
+	    <td>Name:</td>
+        <td><input type="text" ng-model="product.name" ng-change='change()'/>
+        </td>
+		</tr>
+		
+        <tr>
+		<td> Model:</td>  
+        <td><input type="text" ng-model="product.model" ng-change='change()'/>
+        </td>
+		</tr>
+		
+		<tr>
+       <td> Logo:</td>
+       <td> <input type="url" ng-model="product.logo" ng-change='change()'/>
+       </td>
+	   </tr>
+	   
+	   <tr>
+	   <td> Url:</td> 
+       <td> <input type="url" ng-model="product.url" ng-change='change()'/>
+        </td>
+		</tr>
+		
+		<tr>
+		<td>Image:</td>
+        <td><input type="url" ng-model="product.image" ng-change='change()'/>
+        </td>
+        </tr>
+		</table>
+      </form>
+	  
+	 <div id="div4" >
+    	 <h1>
+        Your JSON
+      </h1>
+      <pre>
+        {{product_ld | json}} 
+     	 </pre>
+		 </div>
+    </div>
+	
+	<div ng-controller="Place_Ctrl" ng-show="jsonerator3" id="div5"  >
+	 
+        <form>
+		<table>
+		<tr>
+		<td>Name:</td>
+        <td><input type="text" ng-model="place.name" ng-change='change()'/>
+        </td>
+         </tr>
+		 <tr>
+		<td>StreetAddress:</td>
+           <td> <input type="text" ng-model="place.streetaddress" ng-change='change()'/>
+            </td>
+		</tr>
+		
+         <tr>
+         <td>AddressLocality:</td>
+         <td><input type="text" ng-model="place.addresslocality" ng-change='change()'/>
+            </td>
+			</tr>
+			
+          <tr>
+     	  <td> AddressRegion: </td>
+          <td><input type="text" ng-model="place.addressRegion" ng-change='change()'/>
+           </td>
+		   </tr>
+		   <tr>
+           <td> postalCode:</td>
+            <td><input type="text" ng-model="place.postalCode" ng-change='change()'/>
+            </td>
+			</tr>
+			
+          <tr>
+		  <td> AddressCountry: </td>
+           <td><select ng-model="place" ng-options="{AddressCountry:place.code} as place.nationality for place in countries " ng-change='change()'>
+		   <option value="">-- Select a Country --</option>
+           </select>
+		   </td>
+	       </tr>
+		   
+             <tr>
+			<td> Logo:</td>
+			 <td><input type="url" ng-model="place.logo" ng-change='change()'/>
+			 </td>
+			 </tr>
+			 
+			 <tr>
+			 <td>Url:</td>
+			 <td><input type="url" ng-model="place.url" ng-change='change()'/> 
+			 </td>
+			 </tr>
+			 
+			 <tr>
+			<td>Image:</td>
+			<td><input type="url" ng-model="place.image" ng-change='change()'/> <br/>
+            </td>
+            </tr>
+			</table>
+		  </form>
+
+		 <div id="div6"  >
+		 <h1>
+            Your JSON
+          </h1>
+          <pre>
+            {{place_ld | json}}
+          </pre>
+    </div>
+	</div>
+	</div>
+  </body>
+</html>
