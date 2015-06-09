@@ -6,35 +6,29 @@
 'use strict';
 var mymodule = angular.module("watch", []);
 
-// ----- RENAME THIS!!! controller -----
-mymodule.controller("control", function($scope) {
-  $scope.jsonerator = true;
-  $scope.jsonerator2 = false;
-  $scope.jsonerator3 = false;
-  
-  $scope.person = function() {
-    $scope.jsonerator = true;
-    $scope.jsonerator2 = false;
-    $scope.jsonerator3 = false;
+// ----- Interaction controller -----
+mymodule.controller("Interaction_Ctrl", function($scope) {
+  $scope.show = { person: true, product: false, place: false };
+  $scope.tabclass = { person: 'selected-tab', product: 'tab', place: 'tab' };
+
+  $scope.selectPerson = function() {
+    $scope.show = { person: true, product: false, place: false };
+    $scope.tabclass = { person: 'selected-tab', product: 'tab', place: 'tab' };
   }
 
-  $scope.product = function() {
-    $scope.jsonerator = false;
-    $scope.jsonerator2 = true;
-    $scope.jsonerator3 = false;
+  $scope.selectProduct = function() {
+    $scope.show = { person: false, product: true, place: false };
+    $scope.tabclass = { person: 'tab', product: 'selected-tab', place: 'tab' };
   }
 
-  $scope.place = function() {
-    $scope.jsonerator = false;
-    $scope.jsonerator2 = false;
-    $scope.jsonerator3 = true;
+  $scope.selectPlace = function() {
+    $scope.show = { person: false, product: false, place: true };
+    $scope.tabclass = { person: 'tab', product: 'tab', place: 'selected-tab' };
   }
-  
-  $scope.nationality = 'World';
   
   $scope.countries = [ 
     {nationality: 'Afghanistan', code: 'AF'},
-    {nationality: 'Åland Islands', code: 'AX'},
+    {nationality: 'Aland Islands', code: 'AX'},
     {nationality: 'Albania', code: 'AL'},
     {nationality: 'Algeria', code: 'DZ'},
     {nationality: 'American Samoa', code: 'AS'},

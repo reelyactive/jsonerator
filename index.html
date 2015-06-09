@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="style/main.css" />
   </head>
   <body ng-app="watch">
-    <div ng-controller="control" id="container"> 
+    <div ng-controller="Interaction_Ctrl"> 
 
       <!----- Menu ----->
-      <ul>
-        <li><a href="#" ng-click="person();tog=1" id="bl" ng-class='{"myclass":tog==1}'>Person</a></li>
-        <li><a href="#" ng-click="product();tog=2" id="or" ng-class='{"myclass":tog==2}'>Product</a></li>
-        <li><a href="#" ng-click="place();tog=3 " id="gr" ng-class='{"myclass":tog==3}'>Place</a></li>
-      </ul>
-      <br/><br/>
+      <div id="menu">
+        <ul>
+          <li><a ng-click="selectPerson()" ng-class="tabclass.person">Person</a></li>
+          <li><a ng-click="selectProduct()" ng-class="tabclass.product">Product</a></li>
+          <li><a ng-click="selectPlace()" ng-class="tabclass.place">Place</a></li>
+        </ul>
+      </div>
 
       <!----- Person ----->
-      <div ng-controller="Person_Ctrl" ng-show="jsonerator" id="div1">
+      <div ng-controller="Person_Ctrl" ng-show="show.person">
+        <div class="form">
+        <h1>Enter the fields below...</h1>
         <form>
           <table>
             <tr>
@@ -64,14 +67,17 @@
             </tr>
           </table>
         </form>
-        <div id="div2" >
-          <h1>Your JSON</h1>
+        </div>
+        <div class="json" >
+          <h1>...and your JSON shall appear</h1>
           <pre>{{person_ld | json}}</pre>
         </div>
       </div>
 
       <!----- Product ----->
-      <div ng-controller="Product_Ctrl" ng-show="jsonerator2" id="div3">
+      <div ng-controller="Product_Ctrl" ng-show="show.product">
+        <div class="form">
+        <h1>Enter the fields below...</h1>
         <form>
           <table>
             <tr>
@@ -96,14 +102,17 @@
             </tr>
           </table>
         </form>
-        <div id="div4">
-          <h1>Your JSON</h1>
+        </div>
+        <div class="json">
+          <h1>...and your JSON shall appear</h1>
           <pre>{{product_ld | json}}</pre>
         </div>
       </div>
 
-      <!----- Product ----->
-      <div ng-controller="Place_Ctrl" ng-show="jsonerator3" id="div5">
+      <!----- Place ----->
+      <div ng-controller="Place_Ctrl" ng-show="show.place">
+        <div class="form">
+        <h1>Enter the fields below...</h1>
         <form>
           <table>
             <tr>
@@ -148,8 +157,9 @@
             </tr>
           </table>
         </form>
-        <div id="div6">
-          <h1>Your JSON</h1>
+        </div>
+        <div class="json">
+          <h1>...and your JSON shall appear</h1>
           <pre>{{place_ld | json}}</pre>
         </div>
       </div>

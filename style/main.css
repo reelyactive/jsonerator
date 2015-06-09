@@ -13,9 +13,10 @@ ul {
 
 a {
   float: left;
-  width: 6em;
+  width: 20%;
+  min-width: 6em;
   text-decoration: none;
-  padding: 0.2em 0.6em;
+  padding: 0.2em;
   border-right: 1px solid white;
   background-color:#5a5a5a;
   color:white;
@@ -25,54 +26,44 @@ li {
   display: inline;
 }
 
-#bl:hover ,#or:hover , #gr:hover {
-  background-color: #ff6900;
+h1 {
+  padding-bottom: 0.1em;
 }
- 
-.myclass
+
+.selected-tab
 {
   color: #ffffff; 
   background-color: #0770a2;
 }
 
-#div1, #div2 {
-  position: absolute;
-  width: 400px;
+.selected-tab:hover {
+  background-color: #ff6900;
 }
 
-#div1 {
-  left: 0;
+.tab
+{
+  color: #ffffff; 
+  background-color: #5a5a5a;
 }
 
-#div2 {
-  left: 450px;
-  top:0px;
+.tab:hover {
+  background-color: #ff6900;
 }
 
-#div3, #div4 {
-  position: absolute;
-  width: 400px;
+.form {
+  float: left;
+  width: 50%;
+  min-width: 480px;
 }
 
-#div3 {
-  left: 0;
+.json {
+  float: left;
+  width:50%;
+  min-width: 480px;
 }
 
-#div4 {
-  left: 300px;
-  top:0px;
-}
-
-#div5, #div6 {
-  position: absolute;
-  width: 400px;
-}
-
-#div5 {
-  left: 0;
-}
-
-#div6 {
-  left: 500px;
-  top:0px;
+#menu {
+  padding-bottom: 2em;
+  width: 50%;
+  min-width: 480px;
 }
