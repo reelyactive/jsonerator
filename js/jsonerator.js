@@ -4,7 +4,7 @@
   */
 
 'use strict';
-var mymodule = angular.module("watch", []);
+var mymodule = angular.module("jsonerator", []);
 
 // ----- Interaction controller -----
 mymodule.controller("Interaction_Ctrl", function($scope) {
@@ -388,10 +388,10 @@ mymodule.controller("Place_Ctrl", function($scope) {
         else if($scope.place[key]== $scope.place.name) {
           $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
         }
-        else if($scope.place[key]== $scope.place.streetaddress) {
+        else if($scope.place[key]== $scope.place.streetAddress) {
           $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
         }
-        else if($scope.place[key]== $scope.place.addresslocality) {
+        else if($scope.place[key]== $scope.place.addressLocality) {
           $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
         }        
         else if($scope.place[key]== $scope.place.addressRegion) {
@@ -400,7 +400,7 @@ mymodule.controller("Place_Ctrl", function($scope) {
         else if($scope.place[key]== $scope.place.postalCode) {
           $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
         }
-        else if($scope.place[key] == $scope.place.AddressCountry) {
+        else if($scope.place[key] == $scope.place.addressCountry) {
           $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
         }
         else if($scope.place[key]== $scope.place.logo) {

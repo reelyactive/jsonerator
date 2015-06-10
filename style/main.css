@@ -11,19 +11,20 @@ ul {
   list-style-type: none;
 }
 
-a {
+li {
+  display: inline;
+}
+
+li a {
   float: left;
-  width: 20%;
+  width: 10%;
   min-width: 6em;
   text-decoration: none;
   padding: 0.2em;
   border-right: 1px solid white;
   background-color:#5a5a5a;
+  font-size: 1.4em;
   color:white;
-}
-
-li {
-  display: inline;
 }
 
 h1 {
@@ -34,6 +35,7 @@ h1 {
 {
   color: #ffffff; 
   background-color: #0770a2;
+  font-weight: 600;
 }
 
 .selected-tab:hover {
@@ -63,7 +65,8 @@ h1 {
 }
 
 #menu {
-  padding-bottom: 2em;
-  width: 50%;
+  width: 100%;
+  overflow: hidden;
   min-width: 480px;
+  background-color: #999999;
 }

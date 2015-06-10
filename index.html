@@ -2,13 +2,13 @@
 <html>
   <head>
     <title>
-      reelyActive jsonerator
+      reelyActive: jsonerator
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
     <script type="text/javascript" src="js/jsonerator.js"></script>   
     <link rel="stylesheet" href="style/main.css" />
   </head>
-  <body ng-app="watch">
+  <body ng-app="jsonerator">
     <div ng-controller="Interaction_Ctrl"> 
 
       <!----- Menu ----->
@@ -27,12 +27,12 @@
           <form>
             <table>
               <tr>
-                <td>GivenName:</td>
-                <td><input type="text" ng-model="person.givenName" ng-change='change()'/></td>
+                <td>Given Name:</td>
+                <td><input type="text" placeholder="Barn" ng-model="person.givenName" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>FamilyName:</td>
-                <td><input type="text" ng-model="person.familyName" ng-change='change()'/></td>   
+                <td>Family Name:</td>
+                <td><input type="text" placeholder="Owl" ng-model="person.familyName" ng-change='change()'/></td>   
               </tr>   
               <tr>
                 <td>Gender:</td>
@@ -50,20 +50,20 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>WorksFor:</td>
-                  <td><input type="text" ng-model="person.worksFor" ng-change='change()'/></td>
+                  <td>Company Name:</td>
+                  <td><input type="text" placeholder="reelyActive" ng-model="person.worksFor" ng-change='change()'/></td>
                 </tr>
                 <tr>
-                  <td>JobTitle:</td> 
-                  <td><input type="text" ng-model="person.jobTitle" ng-change='change()'/></td>
+                  <td>Job Title:</td> 
+                  <td><input type="text" placeholder="Mascot" ng-model="person.jobTitle" ng-change='change()'/></td>
                 </tr>
                 <tr>
-                  <td>Url:</td>
-                  <td><input type="url" ng-model="person.url" ng-change='change()'/></td>
+                  <td>Personal URL:</td>
+                  <td><input type="url" placeholder="https://www.npmjs.com/package/barnowl" ng-model="person.url" ng-change='change()'/></td>
                 </tr>
                 <tr>
-                  <td>Image:</td>
-                  <td><input type="url" ng-model="person.image" ng-change='change()'/></td>
+                  <td>Image URL:</td>
+                  <td><input type="url" placeholder="http://reelyactive.com/images/barnowl.jpg" ng-model="person.image" ng-change='change()'/></td>
                 </tr>
               </table>
             </form>
@@ -81,24 +81,24 @@
           <form>
             <table>
               <tr>
-                <td>Name:</td>
-                <td><input type="text" ng-model="product.name" ng-change='change()'/></td>
+                <td>Manufacturer:</td>
+                <td><input type="text" placeholder="reelyActive" ng-model="product.name" ng-change='change()'/></td>
               </tr>
               <tr>
                 <td>Model:</td>  
-                <td><input type="text" ng-model="product.model" ng-change='change()'/></td>
+                <td><input type="text" placeholder="RA-R436 Reelceiver" ng-model="product.model" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>Logo:</td>
-                <td><input type="url" ng-model="product.logo" ng-change='change()'/></td>
+                <td>Product URL:</td> 
+                <td><input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436" ng-model="product.url" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>Url:</td> 
-                <td><input type="url" ng-model="product.url" ng-change='change()'/></td>
+                <td>Logo URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png" ng-model="product.logo" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>Image:</td>
-                <td><input type="url" ng-model="product.image" ng-change='change()'/></td>
+                <td>Image URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/reelceiver.jpg" ng-model="product.image" ng-change='change()'/></td>
               </tr>
             </table>
           </form>
@@ -117,43 +117,43 @@
             <table>
               <tr>
                 <td>Name:</td>
-                <td><input type="text" ng-model="place.name" ng-change='change()'/></td>
+                <td><input type="text" placeholder="Notman House" ng-model="place.name" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>StreetAddress:</td>
-                <td><input type="text" ng-model="place.streetaddress" ng-change='change()'/></td>
+                <td>Street Address:</td>
+                <td><input type="text" placeholder="51 rue Sherbrooke Ouest" ng-model="place.streetAddress" ng-change='change()'/></td>
               </tr> 
               <tr>
-                <td>AddressLocality:</td>
-                <td><input type="text" ng-model="place.addresslocality" ng-change='change()'/></td>
+                <td>Locality (City):</td>
+                <td><input type="text" placeholder="Montr&eacute;al" ng-model="place.addressLocality" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td> AddressRegion: </td>
-                <td><input type="text" ng-model="place.addressRegion" ng-change='change()'/></td>
+                <td>Region (State/Province):</td>
+                <td><input type="text" placeholder="Qu&eacute;bec" ng-model="place.addressRegion" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>postalCode:</td>
-                <td><input type="text" ng-model="place.postalCode" ng-change='change()'/></td>
+                <td>Postal Code:</td>
+                <td><input type="text" placeholder="H2X 1X2" ng-model="place.postalCode" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>AddressCountry:</td>
+                <td>Country:</td>
                 <td>
-                  <select ng-model="place" ng-options="{AddressCountry:place.code} as place.nationality for place in countries" ng-change='change()'>
-                  <option value="">-- Select a Country --</option>
+                  <select ng-model="place" ng-options="{addressCountry:place.code} as place.nationality for place in countries" ng-change='change()'>
+                    <option value="">-- Select a Country --</option>
                   </select>
                 </td>
               </tr>
               <tr>
-                <td>Logo:</td>
-                <td><input type="url" ng-model="place.logo" ng-change='change()'/></td>
+                <td>Place URL:</td>
+                <td><input type="url" placeholder="http://notman.org" ng-model="place.url" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>Url:</td>
-                <td><input type="url" ng-model="place.url" ng-change='change()'/></td>
+                <td>Logo URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/notman-logo.png" ng-model="place.logo" ng-change='change()'/></td>
               </tr>
               <tr>
-                <td>Image:</td>
-                <td><input type="url" ng-model="place.image" ng-change='change()'/><br/></td>
+                <td>Image URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/NotmanHouse.png" ng-model="place.image" ng-change='change()'/><br/></td>
               </tr>
             </table>
           </form>
