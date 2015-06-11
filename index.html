@@ -19,7 +19,6 @@
           <li><a ng-click="selectPlace()" ng-class="tabclass.place">Place</a></li>
         </ul>
       </div>
-
       <!----- Person ----->
       <div ng-controller="Person_Ctrl" ng-show="show.person">
         <div class="form">
@@ -44,7 +43,7 @@
                 <tr>
                   <td>Nationality:</td>
                   <td>
-                    <select ng-model="person"  ng-options="{nationality:person.code} as person.nationality for person in countries" ng-change='change()'>
+                    <select ng-model="person.nationality"  ng-options="nation.code as nation.nationality for nation in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                     </select>
                   </td>
@@ -73,7 +72,6 @@
             <pre>{{person_ld | json}}</pre>
           </div>
         </div>
-
       <!----- Product ----->
       <div ng-controller="Product_Ctrl" ng-show="show.product">
         <div class="form">
@@ -108,7 +106,6 @@
           <pre>{{product_ld | json}}</pre>
         </div>
       </div>
-
       <!----- Place ----->
       <div ng-controller="Place_Ctrl" ng-show="show.place">
         <div class="form">
@@ -138,7 +135,7 @@
               <tr>
                 <td>Country:</td>
                 <td>
-                  <select ng-model="place" ng-options="{addressCountry:place.code} as place.nationality for place in countries" ng-change='change()'>
+                  <select ng-model="place.addressCountry" ng-options=" address.code as address.nationality for address in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                   </select>
                 </td>
