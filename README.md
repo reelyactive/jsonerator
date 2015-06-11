@@ -5,9 +5,9 @@ jsonerator
 Overview
 --------
 
-Minimal web interface to create a personal JSON for [Smart Spaces](http://smartspac.es) (and the greater Internet of Things).  Simply enter any or all of the fields at left and the JSON will automatically be populated.  Try it live via GitHub pages: [reelyactive.github.io/jsonerator/](http://reelyactive.github.io/jsonerator/)
+Minimal web interface to describe a person, product or place in JSON-LD for [Smart Spaces](http://smartspac.es), for a [JSON Silo](https://www.npmjs.com/package/json-silo) or simply for the greater Internet of Things.  Simply enter any or all of the fields at left and the JSON will automatically be populated.  Try it live via GitHub pages: [reelyactive.github.io/jsonerator/](http://reelyactive.github.io/jsonerator/)
 
-![jsonerator Screenshot](http://reelyactive.com/images/jsonerator-barnowl.png)
+![jsonerator Screenshot](http://reelyactive.com/images/jsonerator.png)
 
 Yes, by _minimal_ we mean __minimal__.  We've intentionally kept it this way so that you can easily understand the code and quickly style the page as you wish with CSS.  In most cases, we expect this code to be embedded in an existing page.
 
@@ -30,7 +30,7 @@ All data is represented in [JSON-LD](http://json-ld.org/) using [schema.org](htt
 Notes
 -----
 
-There is absolutely no validation of fields at this time.  Whatever the user enters in the form comes out in the JSON.
+There is minimal validation of fields at this time.  Whatever the user enters in the form comes out in the JSON.
 
 
 License
