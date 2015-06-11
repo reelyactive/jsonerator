@@ -43,7 +43,7 @@
                 <tr>
                   <td>Nationality:</td>
                   <td>
-                    <select ng-model="person.nationality"  ng-options="nation.code as nation.nationality for nation in countries" ng-change='change()'>
+                    <select ng-model="person.nationality"  ng-options="country.code as country.name for country in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                     </select>
                   </td>
@@ -135,7 +135,7 @@
               <tr>
                 <td>Country:</td>
                 <td>
-                  <select ng-model="place.addressCountry" ng-options=" address.code as address.nationality for address in countries" ng-change='change()'>
+                  <select ng-model="place.addressCountry" ng-options="country.code as country.name for country in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                   </select>
                 </td>
@@ -161,5 +161,9 @@
         </div>
       </div>
     </div>
+    <footer id="footer">
+      <a href="index.html"> jsonerator </a> &nbsp; | &nbsp;
+      <a href="http://context.reelyactive.com"> &copy; reelyActive 2014-2015 </a>
+    </footer>
   </body>
 </html>
