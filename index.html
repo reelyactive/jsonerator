@@ -43,7 +43,7 @@
                 <tr>
                   <td>Nationality:</td>
                   <td>
-                    <select ng-model="person.nationality"  ng-options="nation.code as nation.nationality for nation in countries" ng-change='change()'>
+                    <select ng-model="person.nationality"  ng-options="pays.code as pays.nationality for pays in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                     </select>
                   </td>
@@ -135,7 +135,7 @@
               <tr>
                 <td>Country:</td>
                 <td>
-                  <select ng-model="place.addressCountry" ng-options=" address.code as address.nationality for address in countries" ng-change='change()'>
+                  <select ng-model="place.addressCountry" ng-options=" country.code as country.nationality for country in countries" ng-change='change()'>
                     <option value="">-- Select a Country --</option>
                   </select>
                 </td>
