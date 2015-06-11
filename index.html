@@ -1,71 +1,169 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>jsonerator by reelyactive</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>
+      reelyActive: jsonerator
+    </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script type="text/javascript" src="js/jsonerator.js"></script>   
+    <link rel="stylesheet" href="style/main.css" />
   </head>
+  <body ng-app="jsonerator">
+    <div ng-controller="Interaction_Ctrl"> 
 
-  <body>
-    <div class="wrapper">
-        <header>
-            <h1>jsonerator</h1>
-            <p>Create your personal JSON file for Smart Spaces (and the greater Internet of Things).</p>
-
-            <p class="view"><a href="https://github.com/reelyactive/jsonerator">View the Project on GitHub <small>reelyactive/jsonerator</small></a>
-            </p>
-            <ul>
-                <li><a href="https://github.com/reelyactive/jsonerator/zipball/master">Download <strong>ZIP File</strong></a>
-                </li>
-                <li><a href="https://github.com/reelyactive/jsonerator/tarball/master">Download <strong>TAR Ball</strong></a>
-                </li>
-                <li><a href="https://github.com/reelyactive/jsonerator">View On <strong>GitHub</strong></a>
-                </li>
-            </ul>
-        </header>
-        <section>
-            <div class="row">
-                <div class="col-md-4" , align="center">
-                    <h2>Your info</h2>
-                    <form>
-                    <input type="text" name="firstName" placeholder="First Name"><br>
-                    <input type="text" name="lastName" placeholder="Last Name"><br>
-                    <input type="text" name="portraitImageURL" placeholder="Portrait Image URL"><br>
-                    <input type="text" name="companyName" placeholder="Company Name"><br>
-                    <input type="text" name="companyUrl" placeholder="Company Webpage URL"><br>
-                    <input type="text" name="linkedInPublicUrl" placeholder="LinkedIn Public URL"><br>
-                    <input type="text" name="twitterPersonalScreenName" placeholder="Twitter Handle (without @)"><br>
-                    <input type="text" name="googlePlusProfileName" placeholder="Google+ Profile Name"><br>
-                    <input type="text" name="instagramProfileName" placeholder="Instagram Profile Name"><br>
-                    <input type="text" name="soundcloudProfileName" placeholder="SoundCloud Profile Name"><br>
-                    </form>
-                </div>
-                <div class="col-md-8">
-                    <h2 align="center">Your JSON</h2>
-                    <pre id="json"></pre>
-                </div>
-        </section>
-        <footer>
-            <p>This project is maintained by <a href="https://github.com/reelyactive">reelyactive</a>
-            </p>
-            <p>
-                <small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a>
-                </small>
-            </p>
-        </footer>
+      <!----- Menu ----->
+      <div id="menu">
+        <ul>
+          <li><a ng-click="selectPerson()" ng-class="tabclass.person">Person</a></li>
+          <li><a ng-click="selectProduct()" ng-class="tabclass.product">Product</a></li>
+          <li><a ng-click="selectPlace()" ng-class="tabclass.place">Place</a></li>
+        </ul>
+      </div>
+      <!----- Person ----->
+      <div ng-controller="Person_Ctrl" ng-show="show.person">
+        <div class="form">
+          <h1>Enter the fields below...</h1>
+          <form>
+            <table>
+              <tr>
+                <td>Given Name:</td>
+                <td><input type="text" placeholder="Barn" ng-model="person.givenName" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Family Name:</td>
+                <td><input type="text" placeholder="Owl" ng-model="person.familyName" ng-change='change()'/></td>   
+              </tr>   
+              <tr>
+                <td>Gender:</td>
+                <td>
+                  Male <input type="radio" ng-model="person.gender" ng-change='change()' value="male"/>
+                  Female <input type="radio" ng-model="person.gender" ng-change='change()' value="female"/>
+                </td>
+                </tr> 
+                <tr>
+                  <td>Nationality:</td>
+                  <td>
+                    <select ng-model="person.nationality"  ng-options="country.code as country.name for country in countries" ng-change='change()'>
+                    <option value="">-- Select a Country --</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Company Name:</td>
+                  <td><input type="text" placeholder="reelyActive" ng-model="person.worksFor" ng-change='change()'/></td>
+                </tr>
+                <tr>
+                  <td>Job Title:</td> 
+                  <td><input type="text" placeholder="Mascot" ng-model="person.jobTitle" ng-change='change()'/></td>
+                </tr>
+                <tr>
+                  <td>Personal URL:</td>
+                  <td><input type="url" placeholder="https://www.npmjs.com/package/barnowl" ng-model="person.url" ng-change='change()'/></td>
+                </tr>
+                <tr>
+                  <td>Image URL:</td>
+                  <td><input type="url" placeholder="http://reelyactive.com/images/barnowl.jpg" ng-model="person.image" ng-change='change()'/></td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          <div class="json" >
+            <h1>...and your JSON shall appear</h1>
+            <pre>{{person_ld | json}}</pre>
+          </div>
         </div>
-        <script type="text/javascript" src="javascripts/jquery.min.js"></script>
-        <script type="text/javascript" src="javascripts/jsonerator.js"></script>
-        <script src="javascripts/scale.fix.js"></script>
-
-
-</body>
-
+      <!----- Product ----->
+      <div ng-controller="Product_Ctrl" ng-show="show.product">
+        <div class="form">
+          <h1>Enter the fields below...</h1>
+          <form>
+            <table>
+              <tr>
+                <td>Manufacturer:</td>
+                <td><input type="text" placeholder="reelyActive" ng-model="product.name" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Model:</td>  
+                <td><input type="text" placeholder="RA-R436 Reelceiver" ng-model="product.model" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Product URL:</td> 
+                <td><input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436" ng-model="product.url" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Logo URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png" ng-model="product.logo" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Image URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/reelceiver.jpg" ng-model="product.image" ng-change='change()'/></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div class="json">
+          <h1>...and your JSON shall appear</h1>
+          <pre>{{product_ld | json}}</pre>
+        </div>
+      </div>
+      <!----- Place ----->
+      <div ng-controller="Place_Ctrl" ng-show="show.place">
+        <div class="form">
+          <h1>Enter the fields below...</h1>
+          <form>
+            <table>
+              <tr>
+                <td>Name:</td>
+                <td><input type="text" placeholder="Notman House" ng-model="place.name" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Street Address:</td>
+                <td><input type="text" placeholder="51 rue Sherbrooke Ouest" ng-model="place.streetAddress" ng-change='change()'/></td>
+              </tr> 
+              <tr>
+                <td>Locality (City):</td>
+                <td><input type="text" placeholder="Montr&eacute;al" ng-model="place.addressLocality" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Region (State/Province):</td>
+                <td><input type="text" placeholder="Qu&eacute;bec" ng-model="place.addressRegion" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Postal Code:</td>
+                <td><input type="text" placeholder="H2X 1X2" ng-model="place.postalCode" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Country:</td>
+                <td>
+                  <select ng-model="place.addressCountry" ng-options="country.code as country.name for country in countries" ng-change='change()'>
+                    <option value="">-- Select a Country --</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Place URL:</td>
+                <td><input type="url" placeholder="http://notman.org" ng-model="place.url" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Logo URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/notman-logo.png" ng-model="place.logo" ng-change='change()'/></td>
+              </tr>
+              <tr>
+                <td>Image URL:</td>
+                <td><input type="url" placeholder="http://reelyactive.com/images/NotmanHouse.png" ng-model="place.image" ng-change='change()'/><br/></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <div class="json">
+          <h1>...and your JSON shall appear</h1>
+          <pre>{{place_ld | json}}</pre>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+      <a href="index.html"> jsonerator </a> &nbsp; | &nbsp;
+      <a href="http://context.reelyactive.com"> &copy; reelyActive 2014-2015 </a>
+    </footer>
+  </body>
 </html>
