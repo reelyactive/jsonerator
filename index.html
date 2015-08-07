@@ -1,156 +1,217 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>
-      reelyActive: jsonerator
-    </title>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js">
-    </script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js">
-    </script>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-    <script type="text/javascript" src="js/jsonerator.js">
-    </script>
-    <link rel="stylesheet" href="style/main.css" />
+    <title> reelyActive jsonerator </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.1/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="js/jsonerator.js"></script>
   </head>
   <body ng-app="jsonerator">
-    <header>reelyActive JSONerator</header>
-    <div ng-controller="Interaction_Ctrl" class="container">
-      <tabset justified="true" >
+    <div ng-controller="Interaction_Ctrl">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle"
+                  ng-init="navCollapsed = true"
+                  ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://context.reelyactive.com">
+            <strong>reely</strong>Active
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'"
+             ng-click="navCollapsed = true">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href> Clear all </a></li>
+          </ul>
+        </div>
+      </nav>
+      <tabset justified="true">
         <tab heading="Person">
           <div ng-controller="Person_Ctrl" class="row" >
             <div class="col-xs-12 col-md-6">
               <h1>Enter the fields below...</h1>
               <form role="form">
                 Given Name:
-                <input type="text" placeholder="Barn" ng-model="person.givenName" ng-change='change()' tooltip="Ex:Barn" class="form-control" tooltip-placement="right" />
+                <input type="text" placeholder="Barn" class="form-control"
+                       ng-model="person.givenName" ng-change='change()'
+                       tooltip="Ex:Barn" tooltip-placement="right"/>
                 Family Name:
-                <input type="text" placeholder="Owl" ng-model="person.familyName" ng-change='change()' tooltip="Ex:Owl" class="form-control" tooltip-placement="right"/>
+                <input type="text" placeholder="Owl" class="form-control"
+                       ng-model="person.familyName" ng-change='change()'
+                       tooltip="Ex:Owl" tooltip-placement="right"/>
                 Gender:
-                  <label  ng-model="person.gender" ng-change='change()' btn-radio="'Male'"  class="btn btn-default"/>
+                <label ng-model="person.gender" ng-change='change()'
+                       btn-radio="'Male'" class="btn btn-default"/>
                   Male
                 </label>
-                <label  ng-model="person.gender" ng-change='change()'  btn-radio="'Female'"  class="btn btn-default"/>
+                <label ng-model="person.gender" ng-change='change()'
+                       btn-radio="'Female'" class="btn btn-default"/>
                 Female
-                </label><br/>
+                </label>
+                <br/>
                 Nationality:
-                <select  ng-model="person.nationality"  ng-options="pays.code as pays.nationality for pays in countries" ng-change='change()' class="form-control" >
-                  <option value="">
-                  -- Select a Country --
-                  </option>
-                  </select>
-                  Company Name:
-                  <input type="text" placeholder="reelyActive" ng-model="person.worksFor" ng-change='change()' tooltip="Ex:reelyActive" class="form-control" tooltip-placement="right"/>
-                  Job Title: 
-                  <input type="text" placeholder="Mascot" ng-model="person.jobTitle" ng-change='change()' tooltip="Ex:Mascot" class="form-control" tooltip-placement="right"/>
-                  Personal URL:
-                  <input type="url" placeholder="https://www.npmjs.com/package/barnowl" ng-model="person.url" ng-change='change()'  class="form-control" />
-                  Image URL:
-                  <carousel >
-                    <slide ng-repeat="person in slides" active="person.active" >
-                      <img ng-src="{{person.image}}"  style="height:100px; margin:auto">
-                    </slide>
-                  </carousel>
-                  <td class="text-center" >
-                    <input type="url" placeholder="Paste the image URL here,or..." ng-model="person.image" ng-change='change()'  class="form-control" />
-                    <button type="button" class="btn btn-default"  ng-click="getActiveSlide();change()">
-                     Use image above
-                    </button>
-                  </form>
-                </div>
-                <div class="col-xs-12 col-md-6" >
-                  <h1>...and your JSON shall appear</h1>
-                  <pre>{{person_ld | json}}</pre>
-                </div>
-              </div>
-            </tab>
-            <tab heading="Product">
-              <div ng-controller="Product_Ctrl" class="row">
-                <div class="col-xs-12 col-md-6">
-                  <h1>Enter the fields below...</h1>
-                  <form>
-                   Manufacturer:
-                    <input type="text" placeholder="reelyActive" ng-model="product.name" ng-change='change()' tooltip="Ex:reelyActive" class="form-control" tooltip-placement="right"/>
-                    Model:
-                    <input type="text" placeholder="RA-R436 Reelceiver" ng-model="product.model" ng-change='change()' tooltip="Ex:RA-R436 Reelceiver" class="form-control" tooltip-placement="right"/>
-                    Product URL:
-                    <input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436" ng-model="product.url" ng-change='change()'  class="form-control" />
-                    Logo URL:
-                    <input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png" ng-model="product.logo" ng-change='change()'  class="form-control" />
-                    Preset:
-                    <select ng-model="product"  ng-options="device.thing  for device in devices" ng-change='change()' class="form-control">
-                      <option value="">
-                      -- Select a device --
-                      </option>
-                      </select>
-                      Image URL preset:
-                      <carousel >
-                        <slide ng-repeat="product in slides" active="product.active">
-                          <img ng-src="{{product.image}}"  style="height:100px; margin:auto">
-                        </slide>
-                      </carousel>
-                      <input type="url" placeholder="Paste the image URL here,or..." size="33px" ng-model="product.image" ng-change='change()'  class="form-control" />
-                      <button type="button" class="btn btn-default"  ng-click="Slide();change()">
-                      Use image above
-                      </button>
-                  </form>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                <h1>...and your JSON shall appear</h1>
-                <pre>{{product_ld | json}}</pre>
-                </div>
-              </div>
-            </tab>
-            <tab heading="Place">
-              <div ng-controller="Place_Ctrl" class="row">
-                <div class="col-xs-12 col-md-6">
-                  <h1>Enter the fields below...</h1>
-                  <form>
-                  Name:
-                  <input type="text" placeholder="Notman House" ng-model="place.name" ng-change='change()' tooltip="Ex:Notman House" class="form-control" tooltip-placement="right"/>
-                  Street Address:
-                  <input type="text" placeholder="51 rue Sherbrooke Ouest" ng-model="place.streetAddress" ng-change='change()' tooltip="Ex:51 rue Sherbrooke Ouest" class="form-control" tooltip-placement="right"/>
-                  Locality (City):
-                  <input type="text" placeholder="Montr&eacute;al" ng-model="place.addressLocality" ng-change='change()' tooltip="Ex:Montreal" class="form-control" tooltip-placement="right"/>
-                  Region (State/Province):
-                  <input type="text" placeholder="Qu&eacute;bec" ng-model="place.addressRegion" ng-change='change()' tooltip="Ex:Quebec" class="form-control" tooltip-placement="right"/>
-                  Postal Code:
-                  <input type="text" placeholder="H2X 1X2" ng-model="place.postalCode" ng-change='change()' tooltip="Ex:H2X 1X2" class="form-control" tooltip-placement="right"/>
-                  Country:
-                  <select ng-model="place.addressCountry" ng-options=" country.code as country.nationality for country in countries" ng-change='change()' class="form-control">
-                    <option value="">
-                    -- Select a Country --
-                    </option>
-                  </select>
-                  Place URL:
-                  <input type="url" placeholder="http://notman.org" ng-model="place.url" ng-change='change()'  class="form-control" />
-                  Logo URL:
-                  <input type="url" placeholder="http://reelyactive.com/images/notman-logo.png" ng-model="place.logo" ng-change='change()'  class="form-control" />
-                  Image URL:
-                  <carousel >
-                    <slide ng-repeat="place in slides" active="place.active">
-                      <img ng-src="{{place.image}}"  style="height:100px; margin:auto">
-                    </slide>
-                  </carousel>
-                  <input type="url" placeholder="Paste the URL here,or..." size="33px" ng-model="place.image" ng-change='change()'  class="form-control" />
-                  <button type="button" class="btn btn-default"  ng-click="getActiveSlide();change()">
+                <select ng-model="person.nationality" class="form-control"
+                        ng-options="pays.code as pays.nationality for pays in countries"
+                        ng-change='change()'>
+                  <option value=""> -- Select a Country -- </option>
+                </select>
+                Company Name:
+                <input type="text" placeholder="reelyActive"
+                       class="form-control" ng-model="person.worksFor"
+                       ng-change='change()' tooltip="Ex:reelyActive"
+                       tooltip-placement="right"/>
+                Job Title: 
+                <input type="text" placeholder="Mascot" class="form-control"
+                       ng-model="person.jobTitle" ng-change='change()'
+                       tooltip="Ex:Mascot" tooltip-placement="right"/>
+                Personal URL:
+                <input type="url" class="form-control"
+                       placeholder="https://www.npmjs.com/package/barnowl"
+                       ng-model="person.url" ng-change='change()'/>
+                Image URL:
+                <carousel>
+                  <slide ng-repeat="person in slides" active="person.active">
+                    <img ng-src="{{person.image}}">
+                  </slide>
+                </carousel>
+                <input type="url" placeholder="Paste the image URL here,or..."
+                       class="form-control" ng-model="person.image"
+                       ng-change='change()'/>
+                <!-- TODO: class="text-center" -->
+                <button type="button" class="btn btn-default"
+                        ng-click="getActiveSlide();change()">
                   Use image above
-                  </button>
-                </form>
-             </div>
-             <div class="col-xs-12 col-md-6">
-               <h1>...and your JSON shall appear</h1>
-               <pre>{{place_ld | json}}</pre>
-             </div>
-           </tab>
+                </button>
+              </form>
+            </div>
+            <div class="col-xs-12 col-md-6" >
+              <h1>...and your JSON shall appear</h1>
+              <pre>{{person_ld | json}}</pre>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Product">
+          <div ng-controller="Product_Ctrl" class="row">
+            <div class="col-xs-12 col-md-6">
+              <h1>Enter the fields below...</h1>
+              <form role="form">
+                Manufacturer:
+                <input type="text" placeholder="reelyActive"
+                       class="form-control" ng-model="product.name"
+                       ng-change='change()' tooltip="Ex:reelyActive"
+                       tooltip-placement="right"/>
+                Model:
+                <input type="text" placeholder="RA-R436 Reelceiver"
+                       class="form-control" ng-model="product.model"
+                       ng-change='change()' tooltip="Ex:RA-R436 Reelceiver"
+                       tooltip-placement="right"/>
+                Product URL:
+                <input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436"
+                       class="form-control" ng-model="product.url"
+                       ng-change='change()'/>
+                Logo URL:
+                <input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png"
+                       class="form-control" ng-model="product.logo"
+                       ng-change='change()'/>
+                Preset:
+                <select ng-model="product" ng-options="device.thing for device in devices" ng-change='change()' class="form-control">
+                  <option value=""> -- Select a device -- </option>
+                </select>
+                Image URL preset:
+                <carousel>
+                  <slide ng-repeat="product in slides" active="product.active">
+                    <img ng-src="{{product.image}}">
+                  </slide>
+                </carousel>
+                <input type="url" placeholder="Paste the image URL here,or..."
+                       class="form-control" ng-model="product.image"
+                       ng-change='change()'/>
+                <button type="button" class="btn btn-default" 
+                        ng-click="Slide();change()">
+                  Use image above
+                </button>
+              </form>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <h1>...and your JSON shall appear</h1>
+              <pre>{{product_ld | json}}</pre>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Place">
+          <div ng-controller="Place_Ctrl" class="row">
+            <div class="col-xs-12 col-md-6">
+              <h1>Enter the fields below...</h1>
+              <form role="form">
+                Name:
+                <input type="text" placeholder="Notman House"
+                       class="form-control" ng-model="place.name"
+                       ng-change='change()' tooltip="Ex:Notman House"
+                       tooltip-placement="right"/>
+                Street Address:
+                <input type="text" placeholder="51 rue Sherbrooke Ouest"
+                       class="form-control" ng-model="place.streetAddress"
+                       ng-change='change()' tooltip="Ex:51 rue Sherbrooke Ouest" tooltip-placement="right"/>
+                Locality (City):
+                <input type="text" placeholder="Montr&eacute;al"
+                       class="form-control" ng-model="place.addressLocality"
+                       ng-change='change()' tooltip="Ex:Montreal"
+                       tooltip-placement="right"/>
+                Region (State/Province):
+                <input type="text" placeholder="Qu&eacute;bec"
+                       class="form-control" ng-model="place.addressRegion"
+                       ng-change='change()' tooltip="Ex:Quebec"
+                       tooltip-placement="right"/>
+                Postal Code:
+                <input type="text" placeholder="H2X 1X2" class="form-control"
+                       ng-model="place.postalCode" ng-change='change()'
+                       tooltip="Ex:H2X 1X2" tooltip-placement="right"/>
+                Country:
+                <select ng-model="place.addressCountry" class="form-control"
+                        ng-options="country.code as country.nationality for country in countries" ng-change='change()'>
+                  <option value=""> -- Select a Country -- </option>
+                </select>
+                Place URL:
+                <input type="url" placeholder="http://notman.org"
+                       class="form-control" ng-model="place.url"
+                       ng-change='change()'/>
+                Logo URL:
+                <input type="url" placeholder="http://reelyactive.com/images/notman-logo.png"
+                       class="form-control" ng-model="place.logo"
+                       ng-change='change()'/>
+                Image URL:
+                <carousel >
+                  <slide ng-repeat="place in slides" active="place.active">
+                    <img ng-src="{{place.image}}">
+                  </slide>
+                </carousel>
+                <input type="url" placeholder="Paste the URL here,or..."
+                       class="form-control" ng-model="place.image"
+                       ng-change='change()'/>
+                <button type="button" class="btn btn-default"
+                        ng-click="getActiveSlide();change()">
+                  Use image above
+                </button>
+              </form>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <h1>...and your JSON shall appear</h1>
+              <pre>{{place_ld | json}}</pre>
+            </div>
+          </tab>
         </div>
       </tabset>
+      <footer class="footer">
+        <a href="https://github.com/reelyactive/jsonerator"> jsonerator </a>
+        &nbsp; | &nbsp;
+        <a href="http://context.reelyactive.com"> &copy; reelyActive 2014-2015 </a>
+      </footer>
     </div>
-    <footer id="footer">
-      <a href="https://github.com/ibou02/jsonerator">jsonerator</a>
-       &nbsp; | &nbsp;
-      <a href="http://context.reelyactive.com">&copy; reelyActive 2015 </a>
-    </footer>
   </body>
 </html>
