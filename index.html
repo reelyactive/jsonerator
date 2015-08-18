@@ -84,14 +84,15 @@
                        class="form-control" ng-model="person.image"
                        ng-change='change()'/>
                 <!-- TODO: class="text-center" -->
-                <button type="button" class="btn btn-default"
+                <button type="button" class="btn btn-primary"
                         ng-click="getActiveSlide();change()">
                   Use image above
                 </button>
               </form>
+              <p> &nbsp; </p>
             </div>
             <div class="col-xs-12 col-md-6" >
-              <h1>...and your JSON shall appear</h1>
+              <h1>...and the person's JSON shall appear</h1>
               <pre>{{person_ld | json}}</pre>
             </div>
           </div>
@@ -132,14 +133,15 @@
                 <input type="url" placeholder="Paste the image URL here,or..."
                        class="form-control" ng-model="product.image"
                        ng-change='change()'/>
-                <button type="button" class="btn btn-default" 
+                <button type="button" class="btn btn-primary" 
                         ng-click="Slide();change()">
                   Use image above
                 </button>
               </form>
+              <p> &nbsp; </p>
             </div>
             <div class="col-xs-12 col-md-6">
-              <h1>...and your JSON shall appear</h1>
+              <h1>...and the product's JSON shall appear</h1>
               <pre>{{product_ld | json}}</pre>
             </div>
           </div>
@@ -194,14 +196,15 @@
                 <input type="url" placeholder="Paste the URL here,or..."
                        class="form-control" ng-model="place.image"
                        ng-change='change()'/>
-                <button type="button" class="btn btn-default"
+                <button type="button" class="btn btn-primary"
                         ng-click="getActiveSlide();change()">
                   Use image above
                 </button>
               </form>
+              <p> &nbsp; </p>
             </div>
             <div class="col-xs-12 col-md-6">
-              <h1>...and your JSON shall appear</h1>
+              <h1>...and the place's JSON shall appear</h1>
               <pre>{{place_ld | json}}</pre>
             </div>
           </tab>
