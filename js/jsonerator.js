@@ -7,7 +7,7 @@
 var mymodule = angular.module("jsonerator", ['ui.bootstrap']);
 
 // ----- Interaction controller -----
-mymodule.controller("Interaction_Ctrl", function($scope) {
+mymodule.controller("InteractionCtrl", function($scope) {
   
   
   $scope.devices = [
@@ -294,7 +294,7 @@ mymodule.controller("Interaction_Ctrl", function($scope) {
 
 
 // ----- Person controller -----
-mymodule.controller("Person_Ctrl", function($scope) {
+mymodule.controller("PersonCtrl", function($scope) {
   $scope.person_ld = {
       "@context": {
         "schema": "http://schema.org/"
@@ -336,7 +336,7 @@ $scope.getActiveSlide = function() {
 
 
 // ----- Product controller -----
-mymodule.controller("Product_Ctrl", function($scope) {
+mymodule.controller("ProductCtrl", function($scope) {
   $scope.product_ld = {
       "@context": {
        "schema": "http://schema.org/"
@@ -397,7 +397,7 @@ mymodule.controller("Product_Ctrl", function($scope) {
 
 
 // ----- Place controller -----
-mymodule.controller("Place_Ctrl", function($scope) {
+mymodule.controller("PlaceCtrl", function($scope) {
   $scope.place_ld = {
       "@context": {
         "schema": "http://schema.org/"
