@@ -264,7 +264,7 @@ mymodule.controller("InteractionCtrl", function($scope, $rootScope) {
 
 
 // ----- Person controller -----
-mymodule.controller("PersonCtrl", function($scope) {
+mymodule.controller("PersonCtrl", function($scope, $modal) {
 
   $scope.person_ld = {};
   $scope.person = {};
@@ -313,11 +313,25 @@ mymodule.controller("PersonCtrl", function($scope) {
     $scope.person.image = activeSlides.image;
   };
 
+  $scope.webify = function() {
+    var items = { target: "web", json: $scope.person_ld };
+    openModal(items);
+  };
+
+  function openModal(items) {
+    $modal.open( { animation: true,
+                   templateUrl: 'modal.html',
+                   controller: 'ModalCtrl',
+                   size: 'md',
+                   resolve: { items: function() { return items; } }
+                 } );
+  }
+
 });
 
 
 // ----- Product controller -----
-mymodule.controller("ProductCtrl", function($scope) {
+mymodule.controller("ProductCtrl", function($scope, $modal) {
 
   $scope.product_ld = {};
   $scope.product = {};
@@ -419,11 +433,25 @@ mymodule.controller("ProductCtrl", function($scope) {
     $scope.product.image = activeSlide.image;
   };
 
+  $scope.webify = function() {
+    var items = { target: "web", json: $scope.product_ld };
+    openModal(items);
+  };
+
+  function openModal(items) {
+    $modal.open( { animation: true,
+                   templateUrl: 'modal.html',
+                   controller: 'ModalCtrl',
+                   size: 'md',
+                   resolve: { items: function() { return items; } }
+                 } );
+  }
+
 });
 
 
 // ----- Place controller -----
-mymodule.controller("PlaceCtrl", function($scope) {
+mymodule.controller("PlaceCtrl", function($scope, $modal) {
 
   $scope.place_ld = {};
   $scope.place = {};
@@ -487,4 +515,29 @@ mymodule.controller("PlaceCtrl", function($scope) {
     $scope.place.image = activeSlide.image;
   };
 
+  $scope.webify = function() {
+    var items = { target: "web", json: $scope.place_ld };
+    openModal(items);
+  };
+
+  function openModal(items) {
+    $modal.open( { animation: true,
+                   templateUrl: 'modal.html',
+                   controller: 'ModalCtrl',
+                   size: 'md',
+                   resolve: { items: function() { return items; } }
+                 } );
+  }
+
+});
+
+
+// ----- Modal controller -----
+mymodule.controller('ModalCtrl', function($scope, $modalInstance, items) {
+    $scope.markup = '<script type=\"application/ld+json\">\n' +
+                    JSON.stringify(items.json, null, "  ") + '\n</script>';
+
+    $scope.dismiss = function () {
+      $modalInstance.dismiss('cancel');
+    };
 });

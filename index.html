@@ -135,6 +135,10 @@
             <div class="col-xs-12 col-md-6" >
               <h1>...and the person's JSON shall appear</h1>
               <pre>{{person_ld | json}}</pre>
+              <p class="text-center">
+                <button type="button" class="btn btn-primary"
+                        ng-click="webify()"> Export to web </button>
+              </p>
             </div>
           </div>
         </tab>
@@ -218,6 +222,10 @@
             <div class="col-xs-12 col-md-6">
               <h1>...and the product's JSON shall appear</h1>
               <pre>{{product_ld | json}}</pre>
+              <p class="text-center">
+                <button type="button" class="btn btn-primary"
+                        ng-click="webify()"> Export to web </button>
+              </p>
             </div>
           </div>
         </tab>
@@ -332,6 +340,10 @@
             <div class="col-xs-12 col-md-6">
               <h1>...and the place's JSON shall appear</h1>
               <pre>{{place_ld | json}}</pre>
+              <p class="text-center">
+                <button type="button" class="btn btn-primary"
+                        ng-click="webify()"> Export to web </button>
+              </p>
             </div>
           </tab>
         </div>
@@ -342,5 +354,25 @@
         <a href="http://context.reelyactive.com"> &copy; reelyActive 2014-2015 </a>
       </footer>
     </div>
+
+    <!----- Start Modal ----->
+    <script type="text/ng-template" id="modal.html">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          Structured data for the web
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p> Copy the following markup into either the head or body of its corresponding webpage: </p>
+        <pre>{{markup}}</pre>
+        <p> Validate the webpage and/or the raw markup via <a href="https://developers.google.com/structured-data/testing-tool/" target="_blank">Google's Structured Data Testing Tool</a>. </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button"
+                ng-click="dismiss()"> Dismiss </button>
+      </div>
+    </script>
+    <!----- End Modal ----->
+
   </body>
 </html>
