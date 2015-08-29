@@ -288,7 +288,7 @@
                   <label class="col-sm-3 control-label"
                          for="placeCountry"> Country: </label>
                   <div class="col-sm-9">
-                    <select ng-model="place.addressCountry" class="form-control"
+                    <select ng-model="place.address.addressCountry" class="form-control"
                             ng-options="country.code as country.nationality for country in countries"
                             ng-change='change()' id="placeCountry">
                       <option value=""> -- Select a Country -- </option>

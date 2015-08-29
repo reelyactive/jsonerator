@@ -384,7 +384,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
           if(key === 'manufacturer') {
             var hasNonEmptyManufacturerField = false;
             $scope.product_ld["@graph"][0]["schema:manufacturer"] = 
-                                           { "@type": "schema.Organization" };
+                                           { "@type": "schema:Organization" };
             for(var field in $scope.product.manufacturer) {
               if($scope.product.manufacturer.hasOwnProperty(field)) {
                 if(!$scope.product.manufacturer[field].length) {
@@ -392,7 +392,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
                 }
                 else {
                   hasNonEmptyManufacturerField = true;
-                  $scope.product_ld["@graph"][0]["schema:manufacturer"][field] =
+                  $scope.product_ld["@graph"][0]["schema:manufacturer"]["schema:" +field] =
                                            $scope.product.manufacturer[field];
                 }
               }
@@ -479,7 +479,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
           if(key === 'address') {
             var hasNonEmptyAddressField = false;
             $scope.place_ld["@graph"][0]["schema:address"] = 
-                                          { "@type": "schema.PostalAddress" };
+                                          { "@type": "schema:PostalAddress" };
             for(var field in $scope.place.address) {
               if($scope.place.address.hasOwnProperty(field)) {
                 if(!$scope.place.address[field].length) {
@@ -487,7 +487,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
                 }
                 else {
                   hasNonEmptyAddressField = true;
-                  $scope.place_ld["@graph"][0]["schema:address"][field] =
+                  $scope.place_ld["@graph"][0]["schema:address"]["schema:"+field] =
                                                   $scope.place.address[field];
                 }
               }
