@@ -142,42 +142,76 @@
           <div ng-controller="ProductCtrl" class="row">
             <div class="col-xs-12 col-md-6">
               <h1>Enter the fields below...</h1>
-              <form role="form">
-                Manufacturer:
-                <input type="text" placeholder="reelyActive"
-                       class="form-control" ng-model="product.name"
-                       ng-change='change()' tooltip="Ex:reelyActive"
-                       tooltip-placement="right"/>
-                Model:
-                <input type="text" placeholder="RA-R436 Reelceiver"
-                       class="form-control" ng-model="product.model"
-                       ng-change='change()' tooltip="Ex:RA-R436 Reelceiver"
-                       tooltip-placement="right"/>
-                Product URL:
-                <input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436"
-                       class="form-control" ng-model="product.url"
-                       ng-change='change()'/>
-                Logo URL:
-                <input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png"
-                       class="form-control" ng-model="product.logo"
-                       ng-change='change()'/>
-                Preset:
-                <select ng-model="product" ng-options="device.thing for device in devices" ng-change='change()' class="form-control">
-                  <option value=""> -- Select a device -- </option>
-                </select>
-                Image URL preset:
-                <carousel>
-                  <slide ng-repeat="product in slides" active="product.active">
-                    <img ng-src="{{product.image}}">
-                  </slide>
-                </carousel>
-                <input type="url" placeholder="Paste the image URL here,or..."
-                       class="form-control" ng-model="product.image"
-                       ng-change='change()'/>
-                <button type="button" class="btn btn-primary" 
-                        ng-click="Slide();change()">
-                  Use image above
-                </button>
+              <form role="form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productPreset"> Presets: </label>
+                  <div class="col-sm-9">
+                    <select ng-model="product" class="form-control"
+                            ng-options="device.thing for device in devices"
+                            ng-change='change()' id="productPreset">
+                      <option value=""> -- Select a preset device, or enter the fields below -- </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productManufacturer"> Manufacturer: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="reelyActive"
+                           class="form-control" ng-model="product.name"
+                           ng-change='change()' tooltip="Ex:reelyActive"
+                           tooltip-placement="right" id="productManufacturer"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productModel"> Model: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="RA-R436 Reelceiver"
+                           class="form-control" ng-model="product.model"
+                           ng-change='change()' tooltip="Ex:RA-R436 Reelceiver"
+                           tooltip-placement="right" id="productModel"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productUrl"> Product URL: </label>
+                  <div class="col-sm-9">
+                    <input type="url" placeholder="http://shop.reelyactive.com/products/ra-r436"
+                           class="form-control" ng-model="product.url"
+                           ng-change='change()' id="productUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productLogoUrl"> Logo URL: </label>
+                  <div class="col-sm-9">
+                    <input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png"
+                           class="form-control" ng-model="product.logo"
+                           ng-change='change()' id="productLogoUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productImageUrl"> Image URL: </label>
+                  <div class="col-sm-9">
+                    <carousel>
+                      <slide ng-repeat="product in slides" active="product.active">
+                        <img ng-src="{{product.image}}">
+                      </slide>
+                    </carousel>
+                    <input type="url" placeholder="Paste the image URL here,or..."
+                           class="form-control" ng-model="product.image"
+                           ng-change='change()'/>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-primary" 
+                              ng-click="Slide();change()">
+                        Use image above
+                      </button>
+                    </p>
+                  </div>
+                </div>
               </form>
               <p> &nbsp; </p>
             </div>
