@@ -10,7 +10,19 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
   // Interaction controller
   .controller("InteractionCtrl", function($scope, $rootScope) {
   
+    $scope.graph;
+    initialise();
+
+    function initialise() {
+      $scope.graph = { 
+        person: { "@id": "person", "@type": "schema:Person" },
+        product: { "@id": "product", "@type": "schema:Product" },
+        place: { "@id": "place", "@type": "schema:Place" }
+      };
+    }
+
     $scope.clearAll = function() {
+      initialise();
       $rootScope.$broadcast('clear');
     };
 
@@ -266,8 +278,8 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
   // Person controller
   .controller("PersonCtrl", function($scope, $modal) {
 
-    $scope.person_ld = {};
     $scope.person = {};
+    $scope.json = {};
     initialise();
 
     $scope.slides = [
@@ -275,13 +287,13 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
       { text: 'barnacles', image: 'http://reelyactive.com/images/barnacles.jpg' },
       { text: 'barterer', image: 'http://reelyactive.com/images/barterer.jpg' },
       { text: 'chickadee', image: 'http://reelyactive.com/images/chickadee.jpg' },
-      { text: 'starling', image: 'http://reelyactive.com/images/starling.jpg' },
+      { text: 'starling', image: 'http://reelyactive.com/images/starling.jpg' }
     ];
 
     function initialise() {
-      $scope.person_ld = {
+      $scope.json = {
         "@context": { "schema": "http://schema.org/" },
-        "@graph": [ { "@id": "person", "@type": "schema:Person" } ]
+        "@graph": [ $scope.graph.person ]
       };
       $scope.person = {};
     }
@@ -294,11 +306,11 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
       for(var key in $scope.person) {
         if($scope.person.hasOwnProperty(key)) {
           if(!$scope.person[key].length) {
-            delete $scope.person_ld["@graph"][0]["schema:" + key];
+            delete $scope.graph.person["schema:" + key];
             delete $scope.person[key];
           } 
           else {
-            $scope.person_ld["@graph"][0]["schema:" + key] = $scope.person[key];
+            $scope.graph.person["schema:" + key] = $scope.person[key];
           }
         }
       }
@@ -321,7 +333,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     };
 
     $scope.webify = function() {
-      var items = { target: "web", json: $scope.person_ld };
+      var items = { target: "web", json: $scope.json };
       openModal(items);
     };
 
@@ -340,9 +352,9 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
   // Product controller
   .controller("ProductCtrl", function($scope, $modal) {
 
-    $scope.product_ld = {};
     $scope.product = {};
     $scope.preset;
+    $scope.json = {};
     initialise();
 
     $scope.devices = {
@@ -373,9 +385,9 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     ];
 
     function initialise() {
-      $scope.product_ld = {
+      $scope.json = {
         "@context": { "schema": "http://schema.org/" },
-        "@graph": [ { "@id": "product", "@type": "schema:Product" } ]
+        "@graph": [ $scope.graph.product ]
       };
       $scope.product = {};
     }
@@ -390,29 +402,29 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
         if($scope.product.hasOwnProperty(key)) {
           if(key === 'manufacturer') {
             var hasNonEmptyManufacturerField = false;
-            $scope.product_ld["@graph"][0]["schema:manufacturer"] = 
+            $scope.graph.product["schema:manufacturer"] = 
                                            { "@type": "schema:Organization" };
             for(var field in $scope.product.manufacturer) {
               if($scope.product.manufacturer.hasOwnProperty(field)) {
                 if(!$scope.product.manufacturer[field].length) {
-                  delete $scope.product_ld["@graph"][0]["schema:manufacturer"][field];
+                  delete $scope.graph.product["schema:manufacturer"][field];
                 }
                 else {
                   hasNonEmptyManufacturerField = true;
-                  $scope.product_ld["@graph"][0]["schema:manufacturer"]["schema:" +field] =
+                  $scope.graph.product["schema:manufacturer"]["schema:" + field] =
                                            $scope.product.manufacturer[field];
                 }
               }
             }
             if(!hasNonEmptyManufacturerField) {
-              delete $scope.product_ld["@graph"][0]["schema:manufacturer"];
+              delete $scope.graph.product["schema:manufacturer"];
             }
           }
           else if(!$scope.product[key].length) {
-            delete $scope.product_ld["@graph"][0]["schema:" + key];
+            delete $scope.graph.product["schema:" + key];
           }
           else {
-            $scope.product_ld["@graph"][0]["schema:" + key] = $scope.product[key];
+            $scope.graph.product["schema:" + key] = $scope.product[key];
           }
         }
       }
@@ -448,7 +460,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     };
 
     $scope.webify = function() {
-      var items = { target: "web", json: $scope.product_ld };
+      var items = { target: "web", json: $scope.json };
       openModal(items);
     };
 
@@ -467,8 +479,8 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
   // Place controller
   .controller("PlaceCtrl", function($scope, $modal) {
 
-    $scope.place_ld = {};
     $scope.place = {};
+    $scope.json = {};
     initialise();
 
     $scope.slides = [
@@ -476,9 +488,9 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     ];
 
     function initialise() {
-      $scope.place_ld = {
+      $scope.json = {
         "@context": { "schema": "http://schema.org/" },
-        "@graph": [ { "@id": "place", "@type": "schema:Place" } ]
+        "@graph": [ $scope.graph.place ]
       };
       $scope.place = {};
     }
@@ -492,29 +504,29 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
         if($scope.place.hasOwnProperty(key)) {
           if(key === 'address') {
             var hasNonEmptyAddressField = false;
-            $scope.place_ld["@graph"][0]["schema:address"] = 
+            $scope.graph.place["schema:address"] = 
                                           { "@type": "schema:PostalAddress" };
             for(var field in $scope.place.address) {
               if($scope.place.address.hasOwnProperty(field)) {
                 if(!$scope.place.address[field].length) {
-                  delete $scope.place_ld["@graph"][0]["schema:address"][field];
+                  delete $scope.graph.place["schema:address"][field];
                 }
                 else {
                   hasNonEmptyAddressField = true;
-                  $scope.place_ld["@graph"][0]["schema:address"]["schema:"+field] =
+                  $scope.graph.place["schema:address"]["schema:" + field] =
                                                   $scope.place.address[field];
                 }
               }
             }
             if(!hasNonEmptyAddressField) {
-              delete $scope.place_ld["@graph"][0]["schema:address"];
+              delete $scope.graph.place["schema:address"];
             }
           }
           else if(!$scope.place[key].length) {
-            delete $scope.place_ld["@graph"][0]["schema:" + key];
+            delete $scope.graph.place["schema:" + key];
           } 
           else {
-            $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
+            $scope.graph.place["schema:" + key] = $scope.place[key];
           }
         }
       }
@@ -537,7 +549,7 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     };
 
     $scope.webify = function() {
-      var items = { target: "web", json: $scope.place_ld };
+      var items = { target: "web", json: $scope.json };
       openModal(items);
     };
 
