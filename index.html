@@ -33,61 +33,102 @@
       </nav>
       <tabset>
         <tab heading="Person">
-          <div ng-controller="PersonCtrl" class="row" >
+          <div ng-controller="PersonCtrl" class="row">
             <div class="col-xs-12 col-md-6">
               <h1>Enter the fields below...</h1>
-              <form role="form">
-                Given Name:
-                <input type="text" placeholder="Barn" class="form-control"
-                       ng-model="person.givenName" ng-change='change()'
-                       tooltip="Ex:Barn" tooltip-placement="right"/>
-                Family Name:
-                <input type="text" placeholder="Owl" class="form-control"
-                       ng-model="person.familyName" ng-change='change()'
-                       tooltip="Ex:Owl" tooltip-placement="right"/>
-                Gender:
-                <label ng-model="person.gender" ng-change='change()'
-                       btn-radio="'Male'" class="btn btn-default"/>
-                  Male
-                </label>
-                <label ng-model="person.gender" ng-change='change()'
-                       btn-radio="'Female'" class="btn btn-default"/>
-                Female
-                </label>
-                <br/>
-                Nationality:
-                <select ng-model="person.nationality" class="form-control"
-                        ng-options="pays.code as pays.nationality for pays in countries"
-                        ng-change='change()'>
-                  <option value=""> -- Select a Country -- </option>
-                </select>
-                Company Name:
-                <input type="text" placeholder="reelyActive"
-                       class="form-control" ng-model="person.worksFor"
-                       ng-change='change()' tooltip="Ex:reelyActive"
-                       tooltip-placement="right"/>
-                Job Title: 
-                <input type="text" placeholder="Mascot" class="form-control"
-                       ng-model="person.jobTitle" ng-change='change()'
-                       tooltip="Ex:Mascot" tooltip-placement="right"/>
-                Personal URL:
-                <input type="url" class="form-control"
-                       placeholder="https://www.npmjs.com/package/barnowl"
-                       ng-model="person.url" ng-change='change()'/>
-                Image URL:
-                <carousel>
-                  <slide ng-repeat="person in slides" active="person.active">
-                    <img ng-src="{{person.image}}">
-                  </slide>
-                </carousel>
-                <input type="url" placeholder="Paste the image URL here,or..."
-                       class="form-control" ng-model="person.image"
-                       ng-change='change()'/>
-                <!-- TODO: class="text-center" -->
-                <button type="button" class="btn btn-primary"
-                        ng-click="getActiveSlide();change()">
-                  Use image above
-                </button>
+              <form role="form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personGivenName"> Given name: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Barn" class="form-control"
+                           ng-model="person.givenName" ng-change='change()'
+                           tooltip="Ex:Barn" tooltip-placement="right"
+                           id="personGivenName"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personFamilyName"> Family name: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Owl" class="form-control"
+                           ng-model="person.familyName" ng-change='change()'
+                           tooltip="Ex:Owl" tooltip-placement="right"
+                           id="personFamilyName"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Gender:</label>
+                  <div class="col-sm-9 btn-group">
+                    <label ng-model="person.gender" ng-change='change()'
+                           btn-radio="'Male'" class="btn btn-default"
+                           uncheckable> Male </label>
+                    <label ng-model="person.gender" ng-change='change()'
+                           btn-radio="'Female'" class="btn btn-default"
+                           uncheckable> Female </label>
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personNationality"> Nationality: </label>
+                  <div class="col-sm-9">
+                    <select ng-model="person.nationality" class="form-control"
+                            ng-options="country.code as country.nationality for country in countries"
+                            ng-change='change()' id="personNationality"/>
+                      <option value=""> -- Select a Country -- </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personCompanyName"> Company name: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="reelyActive"
+                           class="form-control" ng-model="person.worksFor"
+                           ng-change='change()' tooltip="Ex:reelyActive"
+                           tooltip-placement="right" id="personCompanyName"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personJobTitle"> Job title: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Mascot" class="form-control"
+                           ng-model="person.jobTitle" ng-change='change()'
+                           tooltip="Ex:Mascot" tooltip-placement="right"
+                           id="personJobTitle"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personUrl"> Personal URL: </label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control"
+                           placeholder="https://www.npmjs.com/package/barnowl"
+                           ng-model="person.url" ng-change='change()'
+                           id="personUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="personImageUrl"> Image URL: </label>
+                  <div class="col-sm-9">
+                    <carousel>
+                      <slide ng-repeat="person in slides" active="person.active">
+                        <img ng-src="{{person.image}}">
+                      </slide>
+                    </carousel>
+                    <input type="url" placeholder="Paste the image URL here,or..."
+                           class="form-control" ng-model="person.image"
+                           ng-change='change()' id="personImageUrl"/>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-primary"
+                              ng-click="getActiveSlide();change()">
+                        Use image above
+                      </button>
+                    </p>
+                  </div>
+                </div>
               </form>
               <p> &nbsp; </p>
             </div>
