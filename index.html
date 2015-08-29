@@ -225,56 +225,107 @@
           <div ng-controller="PlaceCtrl" class="row">
             <div class="col-xs-12 col-md-6">
               <h1>Enter the fields below...</h1>
-              <form role="form">
-                Name:
-                <input type="text" placeholder="Notman House"
-                       class="form-control" ng-model="place.name"
-                       ng-change='change()' tooltip="Ex:Notman House"
-                       tooltip-placement="right"/>
-                Street Address:
-                <input type="text" placeholder="51 rue Sherbrooke Ouest"
-                       class="form-control" ng-model="place.streetAddress"
-                       ng-change='change()' tooltip="Ex:51 rue Sherbrooke Ouest" tooltip-placement="right"/>
-                Locality (City):
-                <input type="text" placeholder="Montr&eacute;al"
-                       class="form-control" ng-model="place.addressLocality"
-                       ng-change='change()' tooltip="Ex:Montreal"
-                       tooltip-placement="right"/>
-                Region (State/Province):
-                <input type="text" placeholder="Qu&eacute;bec"
-                       class="form-control" ng-model="place.addressRegion"
-                       ng-change='change()' tooltip="Ex:Quebec"
-                       tooltip-placement="right"/>
-                Postal Code:
-                <input type="text" placeholder="H2X 1X2" class="form-control"
-                       ng-model="place.postalCode" ng-change='change()'
-                       tooltip="Ex:H2X 1X2" tooltip-placement="right"/>
-                Country:
-                <select ng-model="place.addressCountry" class="form-control"
-                        ng-options="country.code as country.nationality for country in countries" ng-change='change()'>
-                  <option value=""> -- Select a Country -- </option>
-                </select>
-                Place URL:
-                <input type="url" placeholder="http://notman.org"
-                       class="form-control" ng-model="place.url"
-                       ng-change='change()'/>
-                Logo URL:
-                <input type="url" placeholder="http://reelyactive.com/images/notman-logo.png"
-                       class="form-control" ng-model="place.logo"
-                       ng-change='change()'/>
-                Image URL:
-                <carousel >
-                  <slide ng-repeat="place in slides" active="place.active">
-                    <img ng-src="{{place.image}}">
-                  </slide>
-                </carousel>
-                <input type="url" placeholder="Paste the URL here,or..."
-                       class="form-control" ng-model="place.image"
-                       ng-change='change()'/>
-                <button type="button" class="btn btn-primary"
-                        ng-click="getActiveSlide();change()">
-                  Use image above
-                </button>
+              <form role="form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeName"> Name: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Notman House"
+                           class="form-control" ng-model="place.name"
+                           ng-change='change()' tooltip="Ex:Notman House"
+                           tooltip-placement="right" id="placeName"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeStreetAddress"> Street address: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="51 rue Sherbrooke Ouest"
+                           class="form-control" ng-model="place.streetAddress"
+                           ng-change='change()' tooltip="Ex:51 rue Sherbrooke Ouest"
+                           tooltip-placement="right" id="placeStreetAddress"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeLocality"> Locality (City): </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Montr&eacute;al"
+                           class="form-control" ng-model="place.addressLocality"
+                           ng-change='change()' tooltip="Ex:Montreal"
+                           tooltip-placement="right" id="placeLocality"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeRegion"> Region (State/Province): </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Qu&eacute;bec"
+                           class="form-control" ng-model="place.addressRegion"
+                           ng-change='change()' tooltip="Ex:Quebec"
+                           tooltip-placement="right" id="placeRegion"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placePostalCode"> Postal code: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="H2X 1X2" class="form-control"
+                           ng-model="place.postalCode" ng-change='change()'
+                           tooltip="Ex:H2X 1X2" tooltip-placement="right"
+                           id="placePostalCode"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeCountry"> Country: </label>
+                  <div class="col-sm-9">
+                    <select ng-model="place.addressCountry" class="form-control"
+                            ng-options="country.code as country.nationality for country in countries"
+                            ng-change='change()' id="placeCountry">
+                      <option value=""> -- Select a Country -- </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeUrl"> Place URL: </label>
+                  <div class="col-sm-9">
+                    <input type="url" placeholder="http://notman.org"
+                           class="form-control" ng-model="place.url"
+                           ng-change='change()' id="placeUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeLogoUrl"> Logo URL: </label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control" 
+                           placeholder="http://reelyactive.com/images/notman-logo.png"
+                           ng-model="place.logo" ng-change='change()'
+                           id="placeLogoUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeImageUrl"> Image URL: </label>
+                  <div class="col-sm-9">
+                    <carousel>
+                      <slide ng-repeat="place in slides" active="place.active">
+                        <img ng-src="{{place.image}}">
+                      </slide>
+                    </carousel>
+                    <input type="url" placeholder="Paste the URL here,or..."
+                           class="form-control" ng-model="place.image"
+                           ng-change='change()'/>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-primary"
+                              ng-click="getActiveSlide();change()">
+                        Use image above
+                      </button>
+                    </p>
+                  </div>
+                </div>
               </form>
               <p> &nbsp; </p>
             </div>
