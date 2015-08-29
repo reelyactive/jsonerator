@@ -393,8 +393,23 @@
                         ng-click="webify()"> Export to web </button>
               </p>
             </div>
-          </tab>
-        </div>
+          </div>
+        </tab>
+        <tab heading="Combined">
+          <div ng-controller="CombinedCtrl" class="row">
+            <div class="col-xs-12 col-md-6">
+              <h1>Enter the fields in the other tabs...</h1>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <h1>...and the combined JSON shall appear</h1>
+              <pre>{{json | json}}</pre>
+              <p class="text-center">
+                <button type="button" class="btn btn-primary"
+                        ng-click="webify()"> Export to web </button>
+              </p>
+            </div>
+          </div>
+        </tab>
       </tabset>
       <footer class="footer">
         <a href="https://github.com/reelyactive/jsonerator"> jsonerator </a>

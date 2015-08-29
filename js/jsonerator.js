@@ -565,6 +565,42 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
   })
 
 
+  // Combined controller
+  .controller("CombinedCtrl", function($scope, $modal) {
+
+    $scope.json = {};
+    initialise();
+
+    function initialise() {
+      $scope.json = {
+        "@context": { "schema": "http://schema.org/" },
+        "@graph": [ $scope.graph.person,
+                    $scope.graph.product,
+                    $scope.graph.place ]
+      };
+    }
+
+    $scope.$on('clear', function(event, args) {
+      initialise();
+    });
+
+    $scope.webify = function() {
+      var items = { target: "web", json: $scope.json };
+      openModal(items);
+    };
+
+    function openModal(items) {
+      $modal.open( { animation: true,
+                     templateUrl: 'modal.html',
+                     controller: 'ModalCtrl',
+                     size: 'md',
+                     resolve: { items: function() { return items; } }
+                   } );
+    }
+
+  })
+
+
   // Modal controller
   .controller('ModalCtrl', function($scope, $modalInstance, items) {
 
