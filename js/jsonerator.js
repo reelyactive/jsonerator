@@ -359,18 +359,21 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
 
     $scope.devices = {
       "Nexus 5": {
+        name: "Nexus 5",
         manufacturer: { name: "LG Electronics" }, 
-        model: "Nexus 5",
+        model: "D82x",
         url: "http://www.google.com/nexus/5/",
         image : "http://reelyactive.com/images/Nexus5.jpg"
       },
       "Bluetooth Smart Reelceiver" : {
+        name: "Bluetooth Smart Reelceiver",
         manufacturer: { name: "reelyActive" },
         model: "RA-R436",
         url: "http://shop.reelyactive.com/products/ra-r436",
         image: "http://reelyactive.com/images/reelceiver400x400.jpg"
       },
       "Active RFID Tag": {
+        name: "915MHz Active RFID Tag",
         manufacturer: { name: "reelyActive" },
         model: "RA-T411",
         url: "http://shop.reelyactive.com/products/ra-t411",

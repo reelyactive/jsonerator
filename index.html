@@ -176,6 +176,17 @@
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label"
+                         for="productName"> Name: </label>
+                  <div class="col-sm-9">
+                    <input type="text" placeholder="Bluetooth Smart Reelceiver"
+                           class="form-control" ng-model="product.name"
+                           ng-change='change()'
+                           tooltip="Ex:Bluetooth Smart Reelceiver"
+                           tooltip-placement="right" id="productName"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
                          for="productManufacturer"> Manufacturer: </label>
                   <div class="col-sm-9">
                     <input type="text" placeholder="reelyActive"
@@ -188,9 +199,9 @@
                   <label class="col-sm-3 control-label"
                          for="productModel"> Model: </label>
                   <div class="col-sm-9">
-                    <input type="text" placeholder="RA-R436 Reelceiver"
+                    <input type="text" placeholder="RA-R436"
                            class="form-control" ng-model="product.model"
-                           ng-change='change()' tooltip="Ex:RA-R436 Reelceiver"
+                           ng-change='change()' tooltip="Ex:RA-R436"
                            tooltip-placement="right" id="productModel"/>
                   </div>
                 </div>
