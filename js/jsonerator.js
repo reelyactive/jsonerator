@@ -303,7 +303,14 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
         }
       }
     };
-  
+
+    $scope.addSocial = function() {
+      if(typeof($scope.person.sameAs) === 'undefined') {
+        $scope.person.sameAs = [];
+      }
+      $scope.person.sameAs.push("");
+    };
+
     function isActive(slide) {
       return slide.active;
     };
@@ -424,6 +431,13 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
       $scope.change();
     };
 
+    $scope.addSocial = function() {
+      if(typeof($scope.product.sameAs) === 'undefined') {
+        $scope.product.sameAs = [];
+      }
+      $scope.product.sameAs.push("");
+    };
+
     function isActive(slide) {
       return slide.active;
     }
@@ -509,6 +523,13 @@ angular.module('jsonerator', [ 'ui.bootstrap' ])
     function isActive(slide) {
       return slide.active;
     }
+
+    $scope.addSocial = function() {
+      if(typeof($scope.place.sameAs) === 'undefined') {
+        $scope.place.sameAs = [];
+      }
+      $scope.place.sameAs.push("");
+    };
 
     $scope.getActiveSlide = function() {
       var activeSlide = $scope.slides.filter(isActive)[0]; 

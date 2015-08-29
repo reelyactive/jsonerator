@@ -111,6 +111,22 @@
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label"
+                         for="personSocialUrls"> Social media URLs: </label>
+                  <div class="col-sm-9">
+                    <div ng-repeat="(key, value) in person.sameAs track by $index">
+                      <input type="url" class="form-control"
+                             placeholder="http://twitter.com/reelyActive"
+                             ng-model="person.sameAs[key]" ng-change='change()'
+                             id="personSocialUrls"/>
+                    </div>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-default"
+                              ng-click="addSocial()"> Add another URL </button>
+                    </p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
                          for="personImageUrl"> Image URL: </label>
                   <div class="col-sm-9">
                     <carousel>
@@ -194,6 +210,22 @@
                     <input type="url" placeholder="http://reelyactive.com/images/reelyActiveLogo.png"
                            class="form-control" ng-model="product.logo"
                            ng-change='change()' id="productLogoUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="productSocialUrls"> Social media URLs: </label>
+                  <div class="col-sm-9">
+                    <div ng-repeat="(key, value) in product.sameAs track by $index">
+                      <input type="url" class="form-control"
+                             placeholder="http://twitter.com/reelyActive"
+                             ng-model="product.sameAs[key]" ng-change='change()'
+                             id="productSocialUrls"/>
+                    </div>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-default"
+                              ng-click="addSocial()"> Add another URL </button>
+                    </p>
                   </div>
                 </div>
                 <div class="form-group">
@@ -312,6 +344,22 @@
                            placeholder="http://reelyactive.com/images/notman-logo.png"
                            ng-model="place.logo" ng-change='change()'
                            id="placeLogoUrl"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label"
+                         for="placeSocialUrls"> Social media URLs: </label>
+                  <div class="col-sm-9">
+                    <div ng-repeat="(key, value) in place.sameAs track by $index">
+                      <input type="url" class="form-control"
+                             placeholder="http://twitter.com/notman"
+                             ng-model="place.sameAs[key]" ng-change='change()'
+                             id="placeSocialUrls"/>
+                    </div>
+                    <p class="text-center">
+                      <button type="button" class="btn btn-default"
+                              ng-click="addSocial()"> Add another URL </button>
+                    </p>
                   </div>
                 </div>
                 <div class="form-group">
