@@ -1,40 +1,19 @@
 /**
-  * Copyright reelyActive 2014-2015
-  * We believe in an open Internet of Things
-  */
+ * Copyright reelyActive 2014-2015
+ * We believe in an open Internet of Things
+ */
+
 
 'use strict';
 var mymodule = angular.module("jsonerator", ['ui.bootstrap']);
 
 // ----- Interaction controller -----
-mymodule.controller("InteractionCtrl", function($scope) {
+mymodule.controller("InteractionCtrl", function($scope, $rootScope) {
   
-  
-  $scope.devices = [
-    {
-	  thing : "Nexus5",
-	  name : "LG Electronics", 
-	  model:"Nexus 5",
-	  url : "http://www.google.com/nexus/5/",
-	  image : "http://reelyactive.com/images/Nexus5.jpg"
-	},
-	{ 
-	  thing : "Bluetooth Receiver",
-	  model:"RA-R436",
-	  name : "reelyActive",
-      url : "http://shop.reelyactive.com/products/ra-r436",
-      image : "http://reelyactive.com/images/reelceiver400x400.jpg",
-    },	  
-    { 
-	  thing : "Active RFID Tag",
-	  name: "reelyActive",
-	  model: "RA-T411",
-	  url: "http://shop.reelyactive.com/products/ra-t411",
-	  image: "http://reelyactive.com/images/tag400x400.jpg"
-    },			
-   ]
-	  
-  
+  $scope.clearAll = function() {
+    $rootScope.$broadcast('clear');
+  };
+
   $scope.countries = [ 
     {nationality: 'Afghanistan', code: 'AF'},
     {nationality: 'Aland Islands', code: 'AX'},
@@ -281,188 +260,231 @@ mymodule.controller("InteractionCtrl", function($scope) {
     {nationality: 'Zimbabwe', code: 'ZW'}
   ];
 
-   $scope.slides = [];
-  $scope.slides.push({text: 'barnowl', image:'http://reelyactive.com/images/barnowl.jpg' });
-  $scope.slides.push({text: 'barnacles',image:'http://reelyactive.com/images/barnacles.jpg'});
-  $scope.slides.push({text: 'barterer',image:'http://reelyactive.com/images/barterer.jpg'});
-  $scope.slides.push({text: 'chickadee', image:'http://reelyactive.com/images/chickadee.jpg'});
-  $scope.slides.push({text: 'starling', image:'http://reelyactive.com/images/starling.jpg'  });
-
-
-
 });
 
 
 // ----- Person controller -----
 mymodule.controller("PersonCtrl", function($scope) {
-  $scope.person_ld = {
-      "@context": {
-        "schema": "http://schema.org/"
-      },
-      "@graph": [
-        {
-          "@id": "person",
-          "@type": "schema:Person",
-        }
-      ]
-    };
-  $scope.person = {};
 
-  function changeKeyValue() {
+  $scope.person_ld = {};
+  $scope.person = {};
+  initialise();
+
+  $scope.slides = [
+    { text: 'barnowl', image: 'http://reelyactive.com/images/barnowl.jpg' },
+    { text: 'barnacles', image: 'http://reelyactive.com/images/barnacles.jpg' },
+    { text: 'barterer', image: 'http://reelyactive.com/images/barterer.jpg' },
+    { text: 'chickadee', image: 'http://reelyactive.com/images/chickadee.jpg' },
+    { text: 'starling', image: 'http://reelyactive.com/images/starling.jpg' },
+  ];
+
+  function initialise() {
+    $scope.person_ld = {
+      "@context": { "schema": "http://schema.org/" },
+      "@graph": [ { "@id": "person", "@type": "schema:Person" } ]
+    };
+    $scope.person = {};
+  }
+
+  $scope.$on('clear', function(event, args) {
+    initialise();
+  });
+
+  $scope.change = function() {
     for(var key in $scope.person) {
       if($scope.person.hasOwnProperty(key)) {
         if(!$scope.person[key].length) {
           delete $scope.person_ld["@graph"][0]["schema:" + key];
+          delete $scope.person[key];
         } 
         else {
           $scope.person_ld["@graph"][0]["schema:" + key] = $scope.person[key];
         }
       }
     }
-  }
+  };
   
-  $scope.change = function() {
-    changeKeyValue();
-  }
+  function isActive(slide) {
+    return slide.active;
+  };
 
-   function isActive(slide) {
-  return slide.active;
-};
-$scope.getActiveSlide = function() {
-  var activeSlides = $scope.slides.filter(isActive)[0]; 
-  $scope.person.image = activeSlides.image;
-};
+  $scope.getActiveSlide = function() {
+    var activeSlides = $scope.slides.filter(isActive)[0]; 
+    $scope.person.image = activeSlides.image;
+  };
+
 });
 
 
 // ----- Product controller -----
 mymodule.controller("ProductCtrl", function($scope) {
-  $scope.product_ld = {
-      "@context": {
-       "schema": "http://schema.org/"
-      },
-      "@graph": [
-        {
-          "@id": "product",
-          "@type": "schema:Product",
-          "schema:manufacturer": {
-            "@type": "schema.Organization"
+
+  $scope.product_ld = {};
+  $scope.product = {};
+  $scope.preset;
+  initialise();
+
+  $scope.devices = {
+    "Nexus 5": {
+      manufacturer: { name: "LG Electronics" }, 
+      model: "Nexus 5",
+      url: "http://www.google.com/nexus/5/",
+      image : "http://reelyactive.com/images/Nexus5.jpg"
+    },
+    "Bluetooth Smart Reelceiver" : {
+      manufacturer: { name: "reelyActive" },
+      model: "RA-R436",
+      url: "http://shop.reelyactive.com/products/ra-r436",
+      image: "http://reelyactive.com/images/reelceiver400x400.jpg"
+    },
+    "Active RFID Tag": {
+      manufacturer: { name: "reelyActive" },
+      model: "RA-T411",
+      url: "http://shop.reelyactive.com/products/ra-t411",
+      image: "http://reelyactive.com/images/tag400x400.jpg"
+    }
+  };
+
+  $scope.slides = [
+    { text: "Nexus 5", image: "http://reelyactive.com/images/Nexus5.jpg" },
+    { text: "RA-R436", image: "http://reelyactive.com/images/reelceiver400x400.jpg" },
+    { text: "RA-T411", image: "http://reelyactive.com/images/tag400x400.jpg" }
+  ];
+
+  function initialise() {
+    $scope.product_ld = {
+      "@context": { "schema": "http://schema.org/" },
+      "@graph": [ { "@id": "product", "@type": "schema:Product" } ]
+    };
+    $scope.product = {};
+  }
+
+  $scope.$on('clear', function(event, args) {
+    initialise();
+    $scope.preset = null;
+  });
+
+  $scope.change = function () {
+    for(var key in $scope.product) {
+      if($scope.product.hasOwnProperty(key)) {
+        if(key === 'manufacturer') {
+          var hasNonEmptyManufacturerField = false;
+          $scope.product_ld["@graph"][0]["schema:manufacturer"] = 
+                                           { "@type": "schema.Organization" };
+          for(var field in $scope.product.manufacturer) {
+            if($scope.product.manufacturer.hasOwnProperty(field)) {
+              if(!$scope.product.manufacturer[field].length) {
+                delete $scope.product_ld["@graph"][0]["schema:manufacturer"][field];
+              }
+              else {
+                hasNonEmptyManufacturerField = true;
+                $scope.product_ld["@graph"][0]["schema:manufacturer"][field] =
+                                           $scope.product.manufacturer[field];
+              }
+            }
+          }
+          if(!hasNonEmptyManufacturerField) {
+            delete $scope.product_ld["@graph"][0]["schema:manufacturer"];
           }
         }
-      ]
-    };
-  $scope.product = {};
-
-  function changeKeyValue() {
-    for(var key in $scope.product) {
-      if ($scope.product.hasOwnProperty(key)) {
-        if(!$scope.product[key].length) {
+        else if(!$scope.product[key].length) {
           delete $scope.product_ld["@graph"][0]["schema:" + key];
-          delete $scope.product_ld["@graph"][0]["schema:manufacturer"][key];
         }
-        else if($scope.product[key] == $scope.product.name) {
-          $scope.product_ld["@graph"][0]["schema:manufacturer"][key] = $scope.product[key];
-        }
-        else if($scope.product[key] == $scope.product.model) {
-          $scope.product_ld["@graph"][0]["schema:" + key] = $scope.product[key];
-        }
-        else if($scope.product[key] == $scope.product.logo) {
-          $scope.product_ld["@graph"][0]["schema:" + key] = $scope.product[key];
-        }
-        else if($scope.product[key] == $scope.product.url) {
-          $scope.product_ld["@graph"][0]["schema:" + key] = $scope.product[key];
-        }
-        else if($scope.product[key] == $scope.product.image) {
+        else {
           $scope.product_ld["@graph"][0]["schema:" + key] = $scope.product[key];
         }
       }
     }
+  };
+
+  $scope.selectPreset = function() {
+    initialise();
+    if($scope.preset !== null) {
+      var device = $scope.devices[$scope.preset];
+      for(var key in device) {
+        if((device.hasOwnProperty(key)) && (key !== '$$hashKey')) {
+          $scope.product[key] = device[key];
+        }
+      }
+    }
+    $scope.change();
+  };
+
+  function isActive(slide) {
+    return slide.active;
   }
 
-  $scope.change = function () {
-    changeKeyValue();
-  }
-
-
-   function Active(slide) {
-  return slide.active;
-};
-  $scope.Slide = function() {
-  var activeSlide = $scope.slides.filter(Active)[0]; 
-  $scope.product.image = activeSlide.image;
-
-}
+  $scope.getActiveSlide = function() {
+    var activeSlide = $scope.slides.filter(isActive)[0]; 
+    $scope.product.image = activeSlide.image;
+  };
 
 });
 
 
 // ----- Place controller -----
 mymodule.controller("PlaceCtrl", function($scope) {
-  $scope.place_ld = {
-      "@context": {
-        "schema": "http://schema.org/"
-      },
-      "@graph": [
-         {
-           "@id": "place",
-           "@type": "schema:Place",
-           "schema:address": {
-             "@type": "schema.PostalAddress"
-           }
-        }
-      ]
-    };
+
+  $scope.place_ld = {};
   $scope.place = {};
+  initialise();
+
+  $scope.slides = [
+    { text: "Silo", image: "http://reelyactive.com/images/json-silo.jpg" }
+  ];
+
+  function initialise() {
+    $scope.place_ld = {
+      "@context": { "schema": "http://schema.org/" },
+      "@graph": [ { "@id": "place", "@type": "schema:Place" } ]
+    };
+    $scope.place = {};
+  }
+
+  $scope.$on('clear', function(event, args) {
+    initialise();
+  });
    
-  function changeKeyValue() {
+  $scope.change = function() {
     for(var key in $scope.place) {
       if($scope.place.hasOwnProperty(key)) {
-        if(!$scope.place[key].length) {
+        if(key === 'address') {
+          var hasNonEmptyAddressField = false;
+          $scope.place_ld["@graph"][0]["schema:address"] = 
+                                          { "@type": "schema.PostalAddress" };
+          for(var field in $scope.place.address) {
+            if($scope.place.address.hasOwnProperty(field)) {
+              if(!$scope.place.address[field].length) {
+                delete $scope.place_ld["@graph"][0]["schema:address"][field];
+              }
+              else {
+                hasNonEmptyAddressField = true;
+                $scope.place_ld["@graph"][0]["schema:address"][field] =
+                                                  $scope.place.address[field];
+              }
+            }
+          }
+          if(!hasNonEmptyAddressField) {
+            delete $scope.place_ld["@graph"][0]["schema:address"];
+          }
+        }
+        else if(!$scope.place[key].length) {
           delete $scope.place_ld["@graph"][0]["schema:" + key];
-          delete $scope.place_ld["@graph"] [0]["schema:address"][key];
         } 
-        else if($scope.place[key]== $scope.place.name) {
-          $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.streetAddress) {
-          $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.addressLocality) {
-          $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
-        }        
-        else if($scope.place[key]== $scope.place.addressRegion) {
-          $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.postalCode) {
-          $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
-        }
-        else if($scope.place[key] == $scope.place.addressCountry) {
-          $scope.place_ld["@graph"][0]["schema:address"][key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.logo) {
-          $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.url) {
-          $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
-        }
-        else if($scope.place[key]== $scope.place.image) {
+        else {
           $scope.place_ld["@graph"][0]["schema:" + key] = $scope.place[key];
         }
       }
     }
+  };
+
+  function isActive(slide) {
+    return slide.active;
   }
 
-  $scope.change = function() {
-    changeKeyValue();
-  }
+  $scope.getActiveSlide = function() {
+    var activeSlide = $scope.slides.filter(isActive)[0]; 
+    $scope.place.image = activeSlide.image;
+  };
 
-
-   function isActive(slide) {
-  return slide.active;
-};
-$scope.getActiveSlide = function() {
-  var activeSlide = $scope.slides.filter(isActive)[0]; 
-  $scope.place.image = activeSlide.image;
-
-}
 });
